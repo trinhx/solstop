@@ -65,25 +65,34 @@ const Attribute = (props: AttributeProps) => {
 		return 'white';
 	};
 
-	const percent = (val: any) => {
-		return parseInt(val * 100);
+	let ingr = [];
+	let roll: any[] = [];
+
+	for (const [key, value] of Object.entries(props.attrObject)) {
+		ingr.push(key.replace(/_/g, ' '));
+		roll.push(value);
+	}
+
+	const percent = (val: Number) => {
+		// return parseInt(val * 100);
+		return 1;
 	};
 
 	return (
 		<div className="mx-4 mb-6 bg-black overflow-hidden img-container">
 			<div className="p-4 font-Dos text-xl absolute w-full">
 				<h1 className="text-2xl mb-4">{props.attrName}</h1>
-				{Object.entries(props.attrObject).map(([key, value]) => {
-					return (
-						<div key={key} className="flex">
-							<div style={{ color: textCol(value) }} className="capitalize">
-								{key.replace(/_/g, ' ')}
-							</div>
-							<div className="flex-grow"></div>
-							<div style={{ color: textCol(value) }} className="flex-none ">{`${percent(value)}%`}</div>
+				{ingr.map((ing, index) => (
+					<div key={index} className="flex">
+						<div style={{ color: textCol(roll[index]) }} className="capitalize">
+							{ing}
 						</div>
-					);
-				})}
+						<div className="flex-grow"></div>
+						<div style={{ color: textCol(roll)[index] }} className="flex-none ">
+							{roll[index]}
+						</div>
+					</div>
+				))}
 			</div>
 		</div>
 	);
