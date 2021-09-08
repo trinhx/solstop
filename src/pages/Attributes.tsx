@@ -73,11 +73,6 @@ const Attribute = (props: AttributeProps) => {
 		roll.push(value);
 	}
 
-	const percent = (val: Number) => {
-		// return parseInt(val * 100);
-		return 1;
-	};
-
 	return (
 		<div className="mx-4 mb-6 bg-black overflow-hidden img-container">
 			<div className="p-4 font-Dos text-xl absolute w-full">
