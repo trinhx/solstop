@@ -123,12 +123,12 @@ const Minter = (props: MinterProps) => {
 	}, [wallet, props.candyMachineId, props.connection]);
 
 	return (
-		<main className="bg-gray-400">
-			{wallet.connected && <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || '')}</p>}
+		<main>
+			<div className="mx-auto w-64 mb-8 text-center">
+				{wallet.connected && <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || '')}</p>}
 
-			{wallet.connected && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+				{wallet.connected && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
 
-			<div>
 				{!wallet.connected ? (
 					<WalletDialogButton>Connect Wallet</WalletDialogButton>
 				) : (
@@ -147,7 +147,6 @@ const Minter = (props: MinterProps) => {
 					</Button>
 				)}
 			</div>
-			<div className="p-8 bg-gray-600">Hi </div>
 
 			<Snackbar open={alertState.open} autoHideDuration={6000} onClose={() => setAlertState({ ...alertState, open: false })}>
 				<Alert onClose={() => setAlertState({ ...alertState, open: false })} severity={alertState.severity}>

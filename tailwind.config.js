@@ -15,6 +15,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				lobster: ['Lobster', ...defaultTheme.fontFamily.sans],
+				Dos: ['DOS', ...defaultTheme.fontFamily.mono],
 				// trochut: ['Trochut', ...defaultTheme.fontFamily.serif],
 			},
 		},
