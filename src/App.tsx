@@ -1,35 +1,24 @@
-import "./App.css";
-import { useMemo } from "react";
+import './App.css';
+import { useMemo } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Home from './Home';
+import Minter from './components/Minter';
+import Navbar from './components/Navbar';
 
-import Home from "./Home";
+import * as anchor from '@project-serum/anchor';
+import { clusterApiUrl } from '@solana/web3.js';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { getPhantomWallet, getSolflareWallet, getSolletWallet } from '@solana/wallet-adapter-wallets';
 
-import * as anchor from "@project-serum/anchor";
-import { clusterApiUrl } from "@solana/web3.js";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import {
-  getPhantomWallet,
-  getSolflareWallet,
-  getSolletWallet,
-} from "@solana/wallet-adapter-wallets";
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
+import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 
-import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
+const treasury = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS!);
 
-const treasury = new anchor.web3.PublicKey(
-  process.env.REACT_APP_TREASURY_ADDRESS!
-);
+const config = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_CONFIG!);
 
-const config = new anchor.web3.PublicKey(
-  process.env.REACT_APP_CANDY_MACHINE_CONFIG!
-);
-
-const candyMachineId = new anchor.web3.PublicKey(
-  process.env.REACT_APP_CANDY_MACHINE_ID!
-);
+const candyMachineId = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_ID!);
 
 const network = process.env.REACT_APP_SOLANA_NETWORK as WalletAdapterNetwork;
 
@@ -41,29 +30,30 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const App = () => {
-  const endpoint = useMemo(() => clusterApiUrl(network), []);
+	const endpoint = useMemo(() => clusterApiUrl(network), []);
 
-  const wallets = useMemo(
-    () => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()],
-    []
-  );
+	const wallets = useMemo(() => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()], []);
 
-  return (
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletDialogProvider>
-          <Home
-            candyMachineId={candyMachineId}
-            config={config}
-            connection={connection}
-            startDate={startDateSeed}
-            treasury={treasury}
-            txTimeout={txTimeout}
-          />
-        </WalletDialogProvider>
-      </WalletProvider>
-    </ConnectionProvider>
-  );
+	return (
+		<ConnectionProvider endpoint={endpoint}>
+			<WalletProvider wallets={wallets} autoConnect>
+				<WalletDialogProvider>
+					<Navbar />
+					<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} />
+					<Switch>
+						<Route exact path="/">
+							<Home />
+						</Route>
+						<Route exact path="/attributes"></Route>
+						<Route exact path="/faq"></Route>
+						<Route exact path="/roadmap"></Route>
+						<Route exact path="/team"></Route>
+						<Route exact path="/terms"></Route>
+					</Switch>
+				</WalletDialogProvider>
+			</WalletProvider>
+		</ConnectionProvider>
+	);
 };
 
 export default App;

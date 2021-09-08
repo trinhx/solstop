@@ -1,174 +1,94 @@
-import { useEffect, useState } from 'react';
-import Countdown from 'react-countdown';
-import { Button, CircularProgress, Snackbar } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+import { useState, useEffect } from 'react';
 
-import * as anchor from '@project-serum/anchor';
+const imgUrl = 'https://newsvendor.sfo2.digitaloceanspaces.com/pizzaadventures_1/';
+const images = [
+	'pizza_b1_s1_c1_m1_m4_v9_v4_v8.png',
+	'pizza_b1_s1_c1_m1_m6_m9_v1_v8.png',
+	'pizza_b1_s1_c1_m1_m7_v4_v1.png',
+	'pizza_b1_s1_c1_m1_m8_v5_v1_v4.png',
+	'pizza_b1_s1_c1_m1_v7.png',
+	'pizza_b1_s1_c1_m2_m4_m3_v2_v6.png',
+	'pizza_b1_s1_c1_m3_m1_m4_v5_v3.png',
+	'pizza_b1_s1_c1_m3_m1_v7_v4_v1.png',
+	'pizza_b1_s1_c1_m3_m2_m1_v6_v7_v11.png',
+	'pizza_b1_s1_c1_m3_v3_v2_v10_v4.png',
+	'pizza_b1_s1_c1_m3_v7_v8_v1_v3.png',
+	'pizza_b1_s1_c1_m4_m1_m2_v7_v9.png',
+	'pizza_b1_s1_c1_m4_m3_m1_v5_v4_v1.png',
+	'pizza_b1_s1_c1_m4_m3_m2_m1_v3_v2.png',
+	'pizza_b1_s1_c1_m5_m8_m1_v6.png',
+	'pizza_b1_s1_c1_m5_m9_v4_v1_v2.png',
+	'pizza_b1_s1_c1_m5_v4_v1.png',
+	'pizza_b1_s1_c1_m5_v5.png',
+	'pizza_b1_s1_c1_m6_m4_m7_v5_v7_v4.png',
+	'pizza_b1_s1_c1_m7_m1_m2_m8_v6_v2_v1.png',
+	'pizza_b1_s1_c1_m7_m2_m4_m6_v6_v1.png',
+	'pizza_b1_s1_c1_m8_m7_m3_v2_v7_v10_v1.png',
+	'pizza_b1_s1_c1_m9_m6_m1_v4_v1.png',
+	'pizza_b1_s1_c1_v7_v9_v1.png',
+	'pizza_b1_s1_c2_m1_m4_v6.png',
+	'pizza_b1_s1_c2_m1_m7_m4_v2_v1_v4.png',
+	'pizza_b1_s1_c5_m5_m3_m2_v3_v1_v2.png',
+	'pizza_b1_s2_c1_m1_m9_v11_v6_v1_v2_v5.png',
+	'pizza_b1_s2_c1_m1_v6_v4_v5_v3_v1.png',
+	'pizza_b1_s2_c1_m2_m8_m1_v4_v5_v10.png',
+	'pizza_b1_s2_c1_m3_m5_m7_v2_v3_v1.png',
+	'pizza_b1_s2_c1_m3_v1_v4_v3.png',
+	'pizza_b1_s2_c1_m3_v9_v6_v2.png',
+	'pizza_b1_s2_c1_m5_m1_v3.png',
+	'pizza_b1_s2_c1_m5_m3_m10_v1_v8_v3_v2.png',
+	'pizza_b1_s2_c1_m7_m6_m4_v6_v7_v1_v5_v3.png',
+	'pizza_b1_s2_c1_m7_v4.png',
+	'pizza_b1_s2_c1_m8_m3_m1_m6_v5_v2_v1.png',
+	'pizza_b1_s3_c1_m1_m6_v2_v8_v5.png',
+	'pizza_b1_s3_c1_m2_m3_v3.png',
+	'pizza_b1_s3_c1_m3_m4_v4_v7.png',
+	'pizza_b1_s3_c1_m5_m4_m3_v6_v3.png',
+];
 
-import { LAMPORTS_PER_SOL } from '@solana/web3.js';
+// https://17d1-149-28-182-107.au.ngrok.io/pizza/list/images
+// the path for the image is under "Key" e.g. pizzaadventures_1/pizza_b1_s1_c1_m1_m4_v9_v4_v8.png
+// use this as an example for the for the images https://newsvendor.sfo2.digitaloceanspaces.com/pizzaadventures_1/pizza_b1_s1_c1_m1_m10_v5_v4.png
 
-import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
-
-import { CandyMachine, awaitTransactionSignatureConfirmation, getCandyMachineState, mintOneToken, shortenAddress } from './candy-machine';
-
-export interface HomeProps {
-	candyMachineId: anchor.web3.PublicKey;
-	config: anchor.web3.PublicKey;
-	connection: anchor.web3.Connection;
-	startDate: number;
-	treasury: anchor.web3.PublicKey;
-	txTimeout: number;
-}
-
-const Home = (props: HomeProps) => {
-	const [balance, setBalance] = useState<number>();
-	const [isActive, setIsActive] = useState(false); // true when countdown completes
-	const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
-	const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
-
-	const [alertState, setAlertState] = useState<AlertState>({
-		open: false,
-		message: '',
-		severity: undefined,
-	});
-
-	const [startDate, setStartDate] = useState(new Date(props.startDate));
-
-	const wallet = useWallet();
-	const [candyMachine, setCandyMachine] = useState<CandyMachine>();
-
-	const onMint = async () => {
-		try {
-			setIsMinting(true);
-			if (wallet.connected && candyMachine?.program && wallet.publicKey) {
-				const mintTxId = await mintOneToken(candyMachine, props.config, wallet.publicKey, props.treasury);
-
-				const status = await awaitTransactionSignatureConfirmation(mintTxId, props.txTimeout, props.connection, 'singleGossip', false);
-
-				if (!status?.err) {
-					setAlertState({
-						open: true,
-						message: 'Congratulations! Mint succeeded!',
-						severity: 'success',
-					});
-				} else {
-					setAlertState({
-						open: true,
-						message: 'Mint failed! Please try again!',
-						severity: 'error',
-					});
-				}
-			}
-		} catch (error: any) {
-			// TODO: blech:
-			let message = error.msg || 'Minting failed! Please try again!';
-			if (!error.msg) {
-				if (error.message.indexOf('0x138')) {
-				} else if (error.message.indexOf('0x137')) {
-					message = `SOLD OUT!`;
-				} else if (error.message.indexOf('0x135')) {
-					message = `Insufficient funds to mint. Please fund your wallet.`;
-				}
-			} else {
-				if (error.code === 311) {
-					message = `SOLD OUT!`;
-					setIsSoldOut(true);
-				} else if (error.code === 312) {
-					message = `Minting period hasn't started yet.`;
-				}
-			}
-
-			setAlertState({
-				open: true,
-				message,
-				severity: 'error',
-			});
-		} finally {
-			if (wallet?.publicKey) {
-				const balance = await props.connection.getBalance(wallet?.publicKey);
-				setBalance(balance / LAMPORTS_PER_SOL);
-			}
-			setIsMinting(false);
-		}
-	};
+function Home() {
+	const [imgIndex1, setIndex1] = useState(-1);
+	const [imgIndex2, setIndex2] = useState(-1);
+	const [imgIndex3, setIndex3] = useState(-1);
 
 	useEffect(() => {
-		(async () => {
-			if (wallet?.publicKey) {
-				const balance = await props.connection.getBalance(wallet.publicKey);
-				setBalance(balance / LAMPORTS_PER_SOL);
-			}
-		})();
-	}, [wallet, props.connection]);
+		let id1 = Math.floor(Math.random() * images.length);
+		let id2 = 1;
+		do {
+			id2 = Math.floor(Math.random() * images.length);
+		} while (id2 === id1);
 
-	useEffect(() => {
-		(async () => {
-			if (!wallet || !wallet.publicKey || !wallet.signAllTransactions || !wallet.signTransaction) {
-				return;
-			}
+		let id3 = 2;
+		do {
+			id3 = Math.floor(Math.random() * images.length);
+		} while (id3 === id1 || id3 === id2);
 
-			const anchorWallet = {
-				publicKey: wallet.publicKey,
-				signAllTransactions: wallet.signAllTransactions,
-				signTransaction: wallet.signTransaction,
-			} as anchor.Wallet;
-
-			const { candyMachine, goLiveDate, itemsRemaining } = await getCandyMachineState(anchorWallet, props.candyMachineId, props.connection);
-
-			setIsSoldOut(itemsRemaining === 0);
-			setStartDate(goLiveDate);
-			setCandyMachine(candyMachine);
-		})();
-	}, [wallet, props.candyMachineId, props.connection]);
+		setIndex1(id1);
+		setIndex2(id2);
+		setIndex3(id3);
+	}, []);
 
 	return (
-		<main>
-			{wallet.connected && <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || '')}</p>}
+		<div>
+			<p className="w-11/12 max-w-2xl mx-auto mt-6 mb-10 text-center text-gray-400">
+				PizzSol NFTs are collections of programmatically, randomly generated NFTs on the Solana blockchain. The 1st generation consists of 10,000 randomly assembled Pizza's from over 300k total
+				options. Each Pizza is comprised of a unique base, cheese, sauce and protein - the possibilities are endless! For more information on our roadmap, faq, etc, join our Discord!
+			</p>
 
-			{wallet.connected && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+			<p className="text-center text-gray-400">Example Pizzas:</p>
+			<div className="flex flex-wrap mx-auto justify-center">
+				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex1 !== -1 && <img src={`${imgUrl}${images[imgIndex1]}`} alt="pizza example" />}</div>
 
-			<div>
-				{!wallet.connected ? (
-					<WalletDialogButton>Connect Wallet</WalletDialogButton>
-				) : (
-					<Button disabled={isSoldOut || isMinting || !isActive} onClick={onMint}>
-						{isSoldOut ? (
-							'SOLD OUT'
-						) : isActive ? (
-							isMinting ? (
-								<CircularProgress />
-							) : (
-								'MINT'
-							)
-						) : (
-							<Countdown date={startDate} onMount={({ completed }) => completed && setIsActive(true)} onComplete={() => setIsActive(true)} renderer={renderCounter} />
-						)}
-					</Button>
-				)}
+				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex2 !== -1 && <img src={`${imgUrl}${images[imgIndex2]}`} alt="pizza example" />}</div>
+
+				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex3 !== -1 && <img src={`${imgUrl}${images[imgIndex3]}`} alt="pizza example" />}</div>
 			</div>
-
-			<Snackbar open={alertState.open} autoHideDuration={6000} onClose={() => setAlertState({ ...alertState, open: false })}>
-				<Alert onClose={() => setAlertState({ ...alertState, open: false })} severity={alertState.severity}>
-					{alertState.message}
-				</Alert>
-			</Snackbar>
-		</main>
+		</div>
 	);
-};
-
-interface AlertState {
-	open: boolean;
-	message: string;
-	severity: 'success' | 'info' | 'warning' | 'error' | undefined;
 }
-
-const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
-	return (
-		<span>
-			{hours} hours, {minutes} minutes, {seconds} seconds
-		</span>
-	);
-};
 
 export default Home;
