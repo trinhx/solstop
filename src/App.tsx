@@ -18,6 +18,7 @@ import { getPhantomWallet, getSolflareWallet, getSolletWallet } from '@solana/wa
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 import Attributes from './pages/Attributes';
+import Testminter from './pages/Testminter';
 
 const treasury = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS!);
 const config = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_CONFIG!);
@@ -70,6 +71,10 @@ const App = () => {
 									</Route>
 									<Route exact path="/terms">
 										<Terms />
+									</Route>
+									<Route exact path="/dev">
+										<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} />
+										<Testminter />
 									</Route>
 								</Switch>
 							</div>
