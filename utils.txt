@@ -1,0 +1,5 @@
+devnet
+https://explorer-api.devnet.solana.com
+https://explorer-api.devnet.solana.com
+https://api.mainnet-beta.solana.com
+mainnet-beta

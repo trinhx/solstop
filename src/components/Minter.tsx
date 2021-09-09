@@ -12,6 +12,8 @@ import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
 
 import { CandyMachine, awaitTransactionSignatureConfirmation, getCandyMachineState, mintOneToken, shortenAddress } from '../candy-machine';
 
+import AccountBar from './AccountBar';
+
 export interface MinterProps {
 	candyMachineId: anchor.web3.PublicKey;
 	config: anchor.web3.PublicKey;
@@ -123,29 +125,23 @@ const Minter = (props: MinterProps) => {
 	}, [wallet, props.candyMachineId, props.connection]);
 
 	return (
-		<main>
-			<div className="mx-auto w-64 mb-8 text-center">
-				<div className="bg-gray-700">
-					{wallet.connected && <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || '')}</p>}
-					{wallet.connected && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
-				</div>
-
+		<div className="h-16">
+			{wallet.connected && <AccountBar address={wallet.publicKey?.toBase58() || ''} balance={(balance || 0).toLocaleString()} />}
+			<div className="mx-auto w-full mb-10 text-center">
 				{!wallet.connected ? (
 					<WalletDialogButton>Connect Wallet</WalletDialogButton>
 				) : (
-					<Button disabled={isSoldOut || isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
-						{isSoldOut ? (
-							<span className="px-4 py-2 rounded-lg bg-gray-700 text-gray-400">'SOLD OUT'</span>
-						) : isActive ? (
-							isMinting ? (
-								<CircularProgress />
-							) : (
-								'MINT A PIZZSOL'
-							)
-						) : (
-							<Countdown date={startDate} onMount={({ completed }) => completed && setIsActive(true)} onComplete={() => setIsActive(true)} renderer={renderCounter} />
+					<>
+						{/* isActive isMinting */}
+						{isSoldOut && <span className="px-4 py-2 bg-blue-600 text-gray-100">ALL PIZZSOLS SOLD OUT!</span>}
+						{!isSoldOut && (
+							<Button disabled={isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
+								{isActive && isMinting && <CircularProgress />}
+								{isActive && !isMinting && <span className="text-gray-100">MINT A PIZZSOL!</span>}
+								{!isActive && <Countdown date={startDate} onMount={({ completed }) => completed && setIsActive(true)} onComplete={() => setIsActive(true)} renderer={renderCounter} />}
+							</Button>
 						)}
-					</Button>
+					</>
 				)}
 			</div>
 
@@ -154,7 +150,7 @@ const Minter = (props: MinterProps) => {
 					{alertState.message}
 				</Alert>
 			</Snackbar>
-		</main>
+		</div>
 	);
 };
 
@@ -167,7 +163,7 @@ interface AlertState {
 const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
 	return (
 		<span>
-			{hours} hours, {minutes} minutes, {seconds} seconds
+			Launching in {hours} hours, {minutes} minutes, {seconds} seconds
 		</span>
 	);
 };
