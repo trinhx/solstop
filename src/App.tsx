@@ -51,7 +51,7 @@ const App = () => {
 						<div id="page-container">
 							<div id="content-wrap">
 								<Navbar />
-								<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} />
+								{/* <Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} /> */}
 								<Switch>
 									<Route exact path="/">
 										<Home />
