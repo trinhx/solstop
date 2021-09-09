@@ -10,7 +10,7 @@ import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
 
-import { CandyMachine, awaitTransactionSignatureConfirmation, getCandyMachineState, mintOneToken, shortenAddress } from '../candy-machine';
+import { CandyMachine, awaitTransactionSignatureConfirmation, getCandyMachineState, mintOneToken } from '../candy-machine';
 
 import AccountBar from './AccountBar';
 
