@@ -6,7 +6,7 @@ function Team() {
 					<div className="p-4 font-Dos text-xl absolute tracking-wider">
 						<h1 className="text-2xl mb-4">The Team</h1>
 						<p>
-							PizzSol Base: <span style={{ color: 'red' }}>Mi Goreng</span>
+							PizzSol Base: <span style={{ color: 'red' }}>Mi Goes</span>
 						</p>
 						<p>
 							Meats: <span style={{ color: 'blue' }}>Pork Roll</span>

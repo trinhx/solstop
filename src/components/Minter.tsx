@@ -125,21 +125,22 @@ const Minter = (props: MinterProps) => {
 	return (
 		<main>
 			<div className="mx-auto w-64 mb-8 text-center">
-				{wallet.connected && <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || '')}</p>}
-
-				{wallet.connected && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+				<div className="bg-gray-700">
+					{wallet.connected && <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || '')}</p>}
+					{wallet.connected && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+				</div>
 
 				{!wallet.connected ? (
 					<WalletDialogButton>Connect Wallet</WalletDialogButton>
 				) : (
-					<Button disabled={isSoldOut || isMinting || !isActive} onClick={onMint}>
+					<Button disabled={isSoldOut || isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
 						{isSoldOut ? (
-							'SOLD OUT'
+							<span className="px-4 py-2 rounded-lg bg-gray-700 text-gray-400">'SOLD OUT'</span>
 						) : isActive ? (
 							isMinting ? (
 								<CircularProgress />
 							) : (
-								'MINT'
+								'MINT A PIZZSOL'
 							)
 						) : (
 							<Countdown date={startDate} onMount={({ completed }) => completed && setIsActive(true)} onComplete={() => setIsActive(true)} renderer={renderCounter} />

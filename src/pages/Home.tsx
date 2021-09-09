@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import pizzolsGif from '../assets/pizzsols.gif';
 
 const imgUrl = 'https://newsvendor.sfo2.digitaloceanspaces.com/pizzaadventures_1/';
 const images = [
@@ -81,11 +82,14 @@ function Home() {
 
 			<p className="text-center text-gray-400">Example Pizzas:</p>
 			<div className="flex flex-wrap mx-auto justify-center">
-				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex1 !== -1 && <img src={`${imgUrl}${images[imgIndex1]}`} alt="pizza example" />}</div>
+				<div className="mx-4 my-6 bg-black overflow-hidden img-container">
+					<img src={pizzolsGif} alt="pizza example" />
+				</div>
+				{/* <div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex1 !== -1 && <img src={`${imgUrl}${images[imgIndex1]}`} alt="pizza example" />}</div>
 
 				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex2 !== -1 && <img src={`${imgUrl}${images[imgIndex2]}`} alt="pizza example" />}</div>
 
-				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex3 !== -1 && <img src={`${imgUrl}${images[imgIndex3]}`} alt="pizza example" />}</div>
+				<div className="mx-4 my-6 bg-black overflow-hidden img-container">{imgIndex3 !== -1 && <img src={`${imgUrl}${images[imgIndex3]}`} alt="pizza example" />}</div> */}
 			</div>
 		</div>
 	);
