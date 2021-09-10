@@ -85,7 +85,7 @@ const Attribute = (props: AttributeProps) => {
 								<>
 									<div className="special-text">{ing.name}</div>
 									<div className="flex-grow"></div>
-									<div className="special-text">{ing.chance}</div>
+									<div className="special-text">{ing.chance}%</div>
 								</>
 							) : (
 								<>
@@ -94,7 +94,7 @@ const Attribute = (props: AttributeProps) => {
 									</div>
 									<div className="flex-grow"></div>
 									<div style={{ color: ing.color }} className="capitalize">
-										{ing.chance}
+										{ing.chance}%
 									</div>
 								</>
 							)}

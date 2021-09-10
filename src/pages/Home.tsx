@@ -14,7 +14,7 @@ function Home() {
 
 			<p className="text-center text-gray-300">Example Pizzsols:</p>
 			<div className="flex flex-wrap mx-auto justify-center">
-				<div className="mx-4 my-6 bg-black overflow-hidden img-container">
+				<div className="mx-4 my-6 bg-black img-container">
 					<img src={pizzolsGif} alt="pizzsol example" />
 				</div>
 			</div>

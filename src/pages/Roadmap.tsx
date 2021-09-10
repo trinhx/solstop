@@ -2,8 +2,8 @@ function Team() {
 	return (
 		<div className="max-w-3xl mx-auto px-4 sm:px-8 mb-96">
 			<div className="flex flex-wrap mx-auto justify-center">
-				<div className="mx-4 mb-6 bg-black overflow-hidden img-container">
-					<div className="p-4 font-dejavu text-sm sm:text-base absolute">
+				<div style={{ width: '512px' }} className="mx-4 mb-6 bg-black">
+					<div className="p-4 font-dejavu text-sm sm:text-base">
 						<h1 className="text-base sm:text-lg mb-4">Roadmap</h1>
 
 						<p style={{ color: 'lime' }}>September:</p>
