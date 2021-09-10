@@ -13,6 +13,16 @@
 		font-weight: 400;
 		src: url('assets/fonts/MorePerfectDOSVGA.ttf');
 	}
+	@font-face {
+		font-family: 'DejaVuSansMono';
+		font-weight: 400;
+		src: url('assets/fonts/DejaVuSansMono.ttf');
+	}
+	@font-face {
+		font-family: 'DejaVuSansMonoBold';
+		font-weight: 700;
+		src: url('assets/fonts/DejaVuSansMono-Bold.ttf');
+	}
 	body {
 		margin: 0;
 		background-color: #151515;
@@ -67,5 +77,11 @@
 		height: 100%; /* This if for the object-fit */
 		object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
 		object-position: center;
+	}
+
+	.special-text {
+		background: -webkit-linear-gradient(45deg, #9153fb, #00ff95 80%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 }

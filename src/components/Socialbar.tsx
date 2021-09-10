@@ -1,9 +1,11 @@
+import { Links } from '../constants/Links';
+
 const SocialBar = () => {
 	return (
 		<>
 			<div className="w-full flex p-2 gap-4 text-gray-500 text-sm absolute ml-0 md:ml-28 xxl:ml-80 z-20">
 				<div>
-					<a href="https://twitter.com/eatpizzsol" target="_blank" rel="noreferrer" className="hover:text-white  flex items-center gap-1">
+					<a href={Links.TWITTER} target="_blank" rel="noreferrer" className="hover:text-white  flex items-center gap-1">
 						<svg width="20" height="20" viewBox="0 0 204 163" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path d="M203.522 20.2007C196.257 23.3065 187.955 25.377 179.652 26.4123C187.955 21.236 195.22 12.954 198.333 3.63668C190.03 8.81296 181.728 11.9187 171.349 13.9892C164.085 5.7072 152.668 0.530884 141.252 0.530884C118.42 0.530884 99.7385 19.1655 99.7385 41.9411C99.7385 45.0469 99.7386 48.1526 100.776 51.2584C66.5278 49.1878 35.3926 32.6238 14.6359 7.77764C11.5223 13.9892 9.44667 21.236 9.44667 28.4828C9.44667 42.9763 16.7116 55.3995 28.1278 62.6462C20.8629 62.6462 14.6359 60.5757 9.44667 57.47C9.44667 77.1398 23.9764 94.7391 42.6574 97.8449C39.5439 98.8801 35.3927 98.8802 31.2413 98.8802C28.1278 98.8802 26.0521 98.8801 22.9386 97.8449C28.1278 114.409 43.6954 126.832 62.3764 126.832C47.8467 138.22 30.2035 144.431 10.4846 144.431C7.37106 144.431 4.25755 144.431 0.106201 143.396C18.7873 154.784 40.5818 162.031 64.4521 162.031C141.252 162.031 182.765 98.8802 182.765 44.0116V38.8353C191.068 35.7296 198.333 28.4827 203.522 20.2007Z" />
 						</svg>
@@ -13,7 +15,7 @@ const SocialBar = () => {
 				</div>
 
 				<div>
-					<a href="https://discord.gg/mD4G5zzyyc" target="_blank" rel="noreferrer" className="hover:text-white  flex items-center gap-1">
+					<a href={Links.DISCORD} target="_blank" rel="noreferrer" className="hover:text-white  flex items-center gap-1">
 						<svg width="22" height="19" viewBox="0 0 71 50" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<g clipPath="url(#clip0)">
 								<path

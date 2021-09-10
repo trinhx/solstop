@@ -1,95 +1,108 @@
-const attributes = {
-	pizzSol_bases: {
-		thin: 0.66,
-		pan: 0.2,
-		pastry_base: 0.05,
-		gluten_free: 0.05,
-		cheesy_crust: 0.02,
-		frankfurt_filled_crust: 0.01,
-	},
-	meats: {
-		ham: 0.28,
-		chicken: 0.1,
-		mince_beef: 0.1,
-		bacon: 0.1,
-		italian_sausage: 0.1,
-		pulled_pork: 0.1,
-		prawns: 0.1,
-		anchovies: 0.1,
-		lobster: 0.01,
-		pepperoni: 0.01,
-	},
-	vegetables: {
-		onion: 0.22,
-		spanish_onion: 0.15,
-		capsicum: 0.1,
-		mushroom: 0.1,
-		olives: 0.1,
-		rocket: 0.1,
-		tomato: 0.1,
-		baby_spinach: 0.03,
-		cherry_tomato: 0.02,
-		jalepenos: 0.02,
-		pineapple: 0.01,
-	},
-	cheeses: {
-		mozzarella: 0.87,
-		parmesan: 0.1,
-		fetta: 0.01,
-		paneer: 0.01,
-		camebert: 0.01,
-	},
-	sauces: {
-		tomato_pizza_sauce: 0.5,
-		BBQ_sauce: 0.27,
-		pesto: 0.1,
-		garlic: 0.1,
-		chilli: 0.02,
-		pizzSol_special_sauce: 0.01,
-	},
-};
+const bases = [
+	{ name: 'pan', chance: 30, color: 'white' },
+	{ name: 'thick_crust', chance: 30, color: 'white' },
+	{ name: 'medium_crust', chance: 31, color: 'white' },
+	{ name: 'gluten_free', chance: 3, color: 'yellow' },
+	{ name: 'cheesy_crust', chance: 2, color: 'lime' },
+	{ name: 'thin_crust', chance: 2, color: 'lime' },
+	{ name: 'flatbread', chance: 1, color: 'red' },
+	{ name: 'new_york', chance: 1, color: 'red' },
+];
+
+const meats = [
+	{ name: 'chicken', chance: 12, color: 'white' },
+	{ name: 'chorizo', chance: 15, color: 'white' },
+	{ name: 'meat_balls', chance: 15, color: 'white' },
+	{ name: 'lobster', chance: 15, color: 'white' },
+	{ name: 'pulled_pork', chance: 14.5, color: 'white' },
+	{ name: 'mince_beef', chance: 14, color: 'white' },
+	{ name: 'ham', chance: 2.5, color: 'yellow' },
+	{ name: 'italian_sausage', chance: 2.5, color: 'yellow' },
+	{ name: 'bacon', chance: 2.5, color: 'yellow' },
+	{ name: 'salami', chance: 2, color: 'lime' },
+	{ name: 'prosciutto', chance: 2, color: 'lime' },
+	{ name: 'anchovies', chance: 1, color: 'red' },
+	{ name: 'prawns', chance: 1, color: 'red' },
+	{ name: 'pepperoni', chance: 1, color: 'red' },
+];
+
+const vegetables = [
+	{ name: 'crushed_red_pepper', chance: 9, color: 'white' },
+	{ name: 'spinach', chance: 9, color: 'white' },
+	{ name: 'cherry_tomato', chance: 9, color: 'white' },
+	{ name: 'tomato', chance: 8, color: 'white' },
+	{ name: 'rocket', chance: 8, color: 'white' },
+	{ name: 'mushroom', chance: 8, color: 'white' },
+	{ name: 'bell_peppers', chance: 8, color: 'white' },
+	{ name: 'spanish_onion', chance: 8, color: 'white' },
+	{ name: 'onion', chance: 8, color: 'white' },
+	{ name: 'oregano', chance: 9, color: 'white' },
+	{ name: 'sun_dried_tomatoes', chance: 2.5, color: 'yellow' },
+	{ name: 'caramelized_onions', chance: 2.5, color: 'yellow' },
+	{ name: 'olive_oil', chance: 2.5, color: 'yellow' },
+	{ name: 'garlic', chance: 2.5, color: 'yellow' },
+	{ name: 'olives', chance: 2, color: 'lime' },
+	{ name: 'basil', chance: 2, color: 'lime' },
+	{ name: 'jalepenos', chance: 1, color: 'red' },
+	{ name: 'pineapple', chance: 1, color: 'red' },
+];
+
+const cheeses = [
+	{ name: 'cheddar cheese', chance: 31, color: 'white' },
+	{ name: "goat's cheese", chance: 30, color: 'white' },
+	{ name: 'feta cheese', chance: 30, color: 'white' },
+	{ name: 'asiago cheese', chance: 2.5, color: 'yellow' },
+	{ name: 'ricotta cheese', chance: 2.5, color: 'yellow' },
+	{ name: 'provolone cheese', chance: 2, color: 'lime' },
+	{ name: 'parmigiano-reggiano cheese', chance: 1, color: 'red' },
+	{ name: 'mozzarella cheese', chance: 1, color: 'red' },
+];
+
+const sauces = [
+	{ name: 'classic pizza sauce', chance: 87.4, color: 'white' },
+	{ name: 'garlic sauce', chance: 4, color: 'yellow' },
+	{ name: 'pesto', chance: 4, color: 'yellow' },
+	{ name: 'bbq sauce', chance: 3, color: 'lime' },
+	{ name: 'chilli sauce', chance: 1, color: 'red' },
+	{ name: 'PizzSol Special Sauce', chance: 0.8, color: 'special' },
+];
 
 export interface AttributeProps {
+	ingredient: Array<any>;
 	attrName: String;
-	attrObject: any;
 }
 
 const Attribute = (props: AttributeProps) => {
-	const textCol = (val: any) => {
-		if (val < 0.02) {
-			return 'red';
-		}
-		if (val < 0.1) {
-			return '#7FFF00';
-		}
-		return 'white';
-	};
-
-	let ingr = [];
-	let roll: any[] = [];
-
-	for (const [key, value] of Object.entries(props.attrObject)) {
-		ingr.push(key.replace(/_/g, ' '));
-		roll.push(value);
-	}
-
 	return (
-		<div className="mx-4 mb-6 bg-black overflow-hidden img-container">
-			<div className="p-4 font-Dos text-xl absolute w-full">
-				<h1 className="text-2xl mb-4">{props.attrName}</h1>
-				{ingr.map((ing, index) => (
-					<div key={index} className="flex">
-						<div style={{ color: textCol(roll[index]) }} className="capitalize">
-							{ing}
+		<>
+			<h1 className="sm:hidden">{props.attrName}</h1>
+			<div className="mx-4 mb-6 bg-black img-container">
+				<div className="p-2 sm:p-4 font-dejavu absolute w-full text-xs sm:text-base">
+					<h1 className="text-base sm:text-lg mb-2 sm:mb-4 hidden sm:block">{props.attrName}</h1>
+					{props.ingredient.map((ing, index) => (
+						<div key={index} className="flex">
+							{ing.color === 'special' ? (
+								<>
+									<div className="special-text">{ing.name}</div>
+									<div className="flex-grow"></div>
+									<div className="special-text">{ing.chance}</div>
+								</>
+							) : (
+								<>
+									<div style={{ color: ing.color }} className="capitalize">
+										{ing.name}
+									</div>
+									<div className="flex-grow"></div>
+									<div style={{ color: ing.color }} className="capitalize">
+										{ing.chance}
+									</div>
+								</>
+							)}
 						</div>
-						<div className="flex-grow"></div>
-						<div style={{ color: textCol(roll)[index] }} className="flex-none ">
-							{roll[index]}
-						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
@@ -97,11 +110,11 @@ function Attributes() {
 	return (
 		<div className="mx-auto px-4 sm:px-8">
 			<div className="flex flex-wrap mx-auto justify-center">
-				<Attribute attrName="PizzSol Bases" attrObject={attributes.pizzSol_bases} />
-				<Attribute attrName="Meats" attrObject={attributes.meats} />
-				<Attribute attrName="Vegetables" attrObject={attributes.vegetables} />
-				<Attribute attrName="Cheeses" attrObject={attributes.cheeses} />
-				<Attribute attrName="Sauces" attrObject={attributes.sauces} />
+				<Attribute attrName="PizzSol Bases" ingredient={bases} />
+				<Attribute attrName="Meats" ingredient={meats} />
+				<Attribute attrName="Vegetables" ingredient={vegetables} />
+				<Attribute attrName="Cheeses" ingredient={cheeses} />
+				<Attribute attrName="Sauces" ingredient={sauces} />
 			</div>
 		</div>
 	);
