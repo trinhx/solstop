@@ -24,11 +24,16 @@ function Home() {
 				<a href={Links.DISCORD} target="_blank" rel="noreferrer" className="hover:text-gray-100">
 					<span>{` Discord!`}</span>
 				</a>
+
+                <br/>
+
 			</p>
 
-            <h1 className="mx-auto w-1/12 bg-indigo-500 hover:bg-indigo-700 text-white text-center py-2 px-4 rounded mb-10">
-                Minting Soon!
-            </h1>
+			<div className="flex flex-wrap mx-auto justify-center">
+                <span className="bg-indigo-500 hover:bg-indigo-700 text-white text-center py-2 px-4 rounded mb-10">
+                    Minting Soon!
+                </span>
+            </div>
 
 			<div className="flex flex-wrap mx-auto justify-center">
 				<div className="mx-4 my-3 bg-black img-container">
