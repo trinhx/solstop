@@ -20,9 +20,9 @@ function Team() {
 						<br></br>
 						<p style={{ color: 'lime' }}>December 2021:</p>
 						<p>There will be an ultra rare PizzSol Special Sauce which Community driven and created.</p>
-                        <br></br>
+						<br></br>
 						<p style={{ color: 'lime' }}>January 2022:</p>
-                        <p>Create your own PizzSol!</p>
+						<p>Create your own PizzSol!</p>
 					</div>
 				</div>
 			</div>
