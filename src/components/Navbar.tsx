@@ -22,12 +22,12 @@ const Navbar = () => {
 				<NavLink to={'/faq'} activeClassName="menu-active">
 					<p className="hover:text-white">FAQ</p>
 				</NavLink>
-				<NavLink to={'/'} activeClassName="menu-active">
+				{/* <NavLink to={'/'} activeClassName="menu-active">
 					<p className="hover:text-white">PIZZSOL GENERATOR</p>
-				</NavLink>
-				<NavLink to={'/'} activeClassName="menu-active">
+				</NavLink> */}
+				{/* <NavLink to={'/'} activeClassName="menu-active">
 					<p className="hover:text-white">THE SPECIAL SAUCE</p>
-				</NavLink>
+				</NavLink> */}
 			</div>
 		</>
 	);
