@@ -37,7 +37,7 @@ function Home() {
 						<ul className="mt-8 text-xl">
 							<li>- The New York</li>
 							<li>- The Meat Lover</li>
-							<li>- The Hawaain</li>
+							<li>- The Hawaiian</li>
 							<li>- The Marherita</li>
 							<li>- The Supreme</li>
 							<li>- The Vegetarian</li>
