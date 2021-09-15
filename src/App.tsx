@@ -10,6 +10,7 @@ import Faq from './pages/Faq';
 import Terms from './pages/Terms';
 import Team from './pages/Team';
 import Roadmap from './pages/Roadmap';
+import Generator from './pages/Generator';
 
 import * as anchor from '@project-serum/anchor';
 import { clusterApiUrl } from '@solana/web3.js';
@@ -68,6 +69,9 @@ const App = () => {
 									</Route>
 									<Route exact path="/team">
 										<Team />
+									</Route>
+									<Route exact path="/generator">
+										<Generator />
 									</Route>
 									<Route exact path="/terms">
 										<Terms />
