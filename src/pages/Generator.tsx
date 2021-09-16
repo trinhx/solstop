@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { bases, meats, vegetables, cheeses, sauces } from '../constants/Ingredients';
 
 export interface AttributeProps {
@@ -49,8 +49,23 @@ const PizzSol = (props: AttributeProps) => {
 // 	{ name: 'new york', chance: 1, color: 'red' },
 // ];
 
+const randomIndex = (ingObject: any) => {
+	return Math.floor(Math.random() * ingObject.length);
+};
+
+const randomArray = (ingObject: any, amount: Number) => {
+	let randArray: Array<any> = [];
+
+	for (let i = 0; i < amount; i++) {
+		randArray.push(Math.floor(Math.random() * ingObject.length));
+	}
+
+	return randArray.filter((a, b) => randArray.indexOf(a) === b);
+};
+
 function Generator() {
-	const { register, handleSubmit, watch } = useForm();
+	const { register, handleSubmit, watch, setValue } = useForm();
+
 	const [ingredients, setIngredients] = useState<Array<any>>([]);
 
 	const watchBase = watch('base', 'pan');
@@ -58,12 +73,71 @@ function Generator() {
 	const watchMeat2 = watch('meat2', 'none');
 	const watchMeat3 = watch('meat3', 'none');
 	const watchMeat4 = watch('meat4', 'none');
+	const watchVeg1 = watch('veg1', 'none');
+	const watchVeg2 = watch('veg2', 'none');
+	const watchVeg3 = watch('veg3', 'none');
+	const watchVeg4 = watch('veg4', 'none');
+	const watchCheese = watch('cheese', 'mozzarella cheese');
+	const watchSauce = watch('sauce', 'classic pizza sauce');
+
+	const randomize = () => {
+		setValue('base', bases[randomIndex(bases)].name);
+		setValue('cheese', cheeses[randomIndex(cheeses)].name);
+		setValue('sauce', sauces[randomIndex(sauces)].name);
+
+		const randomMeats = randomArray(meats, 4);
+		const randomVegs = randomArray(vegetables, 4);
+
+		if (meats[randomMeats[0]] && Math.floor(Math.random() * 10) > 2) {
+			setValue('meat1', meats[randomMeats[0]].name);
+		} else {
+			setValue('meat1', 'none');
+		}
+
+		if (meats[randomMeats[1]] && Math.floor(Math.random() * 10) > 4) {
+			setValue('meat2', meats[randomMeats[1]].name);
+		} else {
+			setValue('meat2', 'none');
+		}
+
+		if (meats[randomMeats[3]] && Math.floor(Math.random() * 10) > 6) {
+			setValue('meat3', meats[randomMeats[2]].name);
+		} else {
+			setValue('meat3', 'none');
+		}
+
+		if (meats[randomMeats[4]] && Math.floor(Math.random() * 10) > 8) {
+			setValue('meat4', meats[randomMeats[3]].name);
+		} else {
+			setValue('meat4', 'none');
+		}
+
+		if (meats[randomVegs[0]] && Math.floor(Math.random() * 10) > 2) {
+			setValue('veg1', vegetables[randomVegs[0]].name);
+		} else {
+			setValue('veg1', 'none');
+		}
+
+		if (meats[randomVegs[1]] && Math.floor(Math.random() * 10) > 4) {
+			setValue('veg2', vegetables[randomVegs[1]].name);
+		} else {
+			setValue('veg2', 'none');
+		}
+
+		if (meats[randomVegs[3]] && Math.floor(Math.random() * 10) > 6) {
+			setValue('veg3', vegetables[randomVegs[2]].name);
+		} else {
+			setValue('veg3', 'none');
+		}
+
+		if (meats[randomVegs[4]] && Math.floor(Math.random() * 10) > 8) {
+			setValue('veg4', vegetables[randomVegs[3]].name);
+		} else {
+			setValue('veg4', 'none');
+		}
+	};
 
 	useEffect(() => {
-		console.log(watchBase);
-		console.log(watchMeat1);
-		console.log(watchMeat2);
-
 		const updatedIngs: Array<any> = [];
 
 		bases.forEach((ing) => {
@@ -84,26 +158,56 @@ function Generator() {
 			}
 		});
 
-		console.log(updatedIngs);
+		vegetables.forEach((ing) => {
+			if (ing.name === watchVeg1) {
+				updatedIngs.push(ing);
+			} else if (ing.name === watchVeg2) {
+				updatedIngs.push(ing);
+			} else if (ing.name === watchVeg3) {
+				updatedIngs.push(ing);
+			} else if (ing.name === watchVeg4) {
+				updatedIngs.push(ing);
+			}
+		});
+
+		cheeses.forEach((ing) => {
+			if (ing.name === watchCheese) {
+				updatedIngs.push(ing);
+			}
+		});
+
+		sauces.forEach((ing) => {
+			if (ing.name === watchSauce) {
+				updatedIngs.push(ing);
+			}
+		});
 
 		setIngredients(updatedIngs);
-	}, [watchBase, watchMeat1, watchMeat2, watchMeat3, watchMeat4]);
+	}, [watchBase, watchMeat1, watchMeat2, watchMeat3, watchMeat4, watchVeg1, watchVeg2, watchVeg3, watchVeg4, watchCheese, watchSauce]);
+
+	useEffect(() => {
+		randomize();
+	}, []);
 
 	return (
 		<div className="mx-auto px-4 sm:px-8">
 			<div className="flex flex-wrap mx-auto justify-center">
 				<div className="mx-4 mb-6 bg-black img-container">
+					<button className="bg-indigo-800 my-2 py-1 px-4 flex justify-center text-sm mx-auto hover:bg-indigo-600" onClick={randomize}>
+						Randomize
+					</button>
 					<div className="p-2 sm:p-4 font-dejavu absolute w-full text-xs sm:text-base">
 						<form>
-							<div className="capitalize">Choose your base:</div>
-							<select className="bg-gray-700 w-full" {...register('base')}>
+							<h2>Choose Your Base:</h2>
+							<select className="bg-gray-700 w-full capitalize" {...register('base')}>
 								{bases.map((ing, index) => (
 									<option key={index} value={ing.name}>
 										{ing.name}
 									</option>
 								))}
 							</select>
-							<div className="capitalize mt-4">Choose your meats:</div>
+
+							<h2 className="mt-4">Choose Your Meats:</h2>
 							<select className="bg-gray-700 w-full" {...register('meat1')}>
 								<option value="none">none</option>
 								{meats.map((ing, index) => (
@@ -112,6 +216,7 @@ function Generator() {
 									</option>
 								))}
 							</select>
+
 							<select className="bg-gray-700 w-full" {...register('meat2')}>
 								<option value="none">none</option>
 								{meats.map((ing, index) => (
@@ -133,6 +238,61 @@ function Generator() {
 							<select className="bg-gray-700 w-full" {...register('meat4')}>
 								<option value="none">none</option>
 								{meats.map((ing, index) => (
+									<option key={index} value={ing.name}>
+										{ing.name}
+									</option>
+								))}
+							</select>
+
+							<h2 className="mt-4">Choose Your Vegetables:</h2>
+							<select className="bg-gray-700 w-full" {...register('veg1')}>
+								<option value="none">none</option>
+								{vegetables.map((ing, index) => (
+									<option key={index} value={ing.name}>
+										{ing.name}
+									</option>
+								))}
+							</select>
+
+							<select className="bg-gray-700 w-full" {...register('veg2')}>
+								<option value="none">none</option>
+								{vegetables.map((ing, index) => (
+									<option key={index} value={ing.name}>
+										{ing.name}
+									</option>
+								))}
+							</select>
+
+							<select className="bg-gray-700 w-full" {...register('veg3')}>
+								<option value="none">none</option>
+								{vegetables.map((ing, index) => (
+									<option key={index} value={ing.name}>
+										{ing.name}
+									</option>
+								))}
+							</select>
+
+							<select className="bg-gray-700 w-full" {...register('veg4')}>
+								<option value="none">none</option>
+								{vegetables.map((ing, index) => (
+									<option key={index} value={ing.name}>
+										{ing.name}
+									</option>
+								))}
+							</select>
+
+							<h2 className="mt-4">Choose Your Cheese:</h2>
+							<select className="bg-gray-700 w-full capitalize" {...register('cheese')}>
+								{cheeses.map((ing, index) => (
+									<option key={index} value={ing.name}>
+										{ing.name}
+									</option>
+								))}
+							</select>
+
+							<h2 className="mt-4">Choose Your Base:</h2>
+							<select className="bg-gray-700 w-full capitalize" {...register('sauce')}>
+								{sauces.map((ing, index) => (
 									<option key={index} value={ing.name}>
 										{ing.name}
 									</option>
