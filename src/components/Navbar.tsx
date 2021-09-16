@@ -19,15 +19,15 @@ const Navbar = () => {
 				<NavLink to={'/team'} activeClassName="menu-active">
 					<p className="hover:text-white">TEAM</p>
 				</NavLink>
+				<NavLink to={'/generator'} activeClassName="menu-active">
+					<p className="hover:text-white">PIZZSOL GENERATOR</p>
+				</NavLink>
 				<NavLink to={'/faq'} activeClassName="menu-active">
 					<p className="hover:text-white">FAQ</p>
 				</NavLink>
-				<NavLink to={'/'} activeClassName="menu-active">
-					<p className="hover:text-white">PIZZSOL GENERATOR</p>
-				</NavLink>
-				<NavLink to={'/'} activeClassName="menu-active">
+				{/* <NavLink to={'/'} activeClassName="menu-active">
 					<p className="hover:text-white">THE SPECIAL SAUCE</p>
-				</NavLink>
+				</NavLink> */}
 			</div>
 		</>
 	);

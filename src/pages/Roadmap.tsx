@@ -2,7 +2,7 @@ function Team() {
 	return (
 		<div className="max-w-3xl mx-auto px-4 sm:px-8 mb-96">
 			<div className="flex flex-wrap mx-auto justify-center">
-				<div style={{ width: '512px' }} className="mx-4 mb-6 bg-black">
+				<div style={{ width: '512px' }} className="mx-4 mb-10 bg-black pb-8">
 					<div className="p-4 font-dejavu text-sm sm:text-base">
 						<h1 className="text-base sm:text-lg mb-4">Roadmap</h1>
 
@@ -20,9 +20,9 @@ function Team() {
 						<br></br>
 						<p style={{ color: 'lime' }}>December 2021:</p>
 						<p>There will be an ultra rare PizzSol Special Sauce which Community driven and created.</p>
-                        <br></br>
+						<br></br>
 						<p style={{ color: 'lime' }}>January 2022:</p>
-                        <p>Create your own PizzSol!</p>
+						<p>Create your own PizzSol!</p>
 					</div>
 				</div>
 			</div>

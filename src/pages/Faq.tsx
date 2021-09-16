@@ -28,7 +28,7 @@ function Faq() {
 			</p>
 
 			<h2 className="text-xl text-indigo-200 mt-2">What can I do with my PizzSol NFT?</h2>
-			<p className="leading-relaxed mb-8 text-gray-300">
+			<div className="leading-relaxed mb-8 text-gray-300">
 				You are free to do anything with your PizzSols. The possibilities are endless.
 				<br></br>
 				Examples:
@@ -36,7 +36,7 @@ function Faq() {
 					<li>Incorporate Pizzsols in your NFT games as food items</li>
 					<li>Create derivative art based on Pizzsol Ingredients</li>
 				</ul>
-			</p>
+			</div>
 
 			<h2 className="text-xl text-indigo-200 mt-2">How were the PizzSols generated?</h2>
 			<p className="leading-relaxed mb-8 text-gray-300">
