@@ -77,7 +77,9 @@ const randomArray = (amount: Number, ingObj: any) => {
 	let randArray: Array<any> = [];
 
 	for (let i = 0; i < amount; i++) {
-		randArray.push(weightedRandom(ingObj));
+		if (Math.floor(Math.random() * 2) > 0) {
+			randArray.push(weightedRandom(ingObj));
+		}
 	}
 
 	return randArray.filter((a, b) => randArray.indexOf(a) === b);
@@ -110,6 +112,7 @@ function Generator() {
 		for (let i = 0; i < 4; i++) {
 			setValue(`meat${i + 1}`, 'none');
 		}
+
 		meatArray.forEach((meat, index) => {
 			setValue(`meat${index + 1}`, meat);
 		});
