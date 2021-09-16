@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { bases, meats, vegetables, cheeses, sauces } from '../constants/Ingredients';
 
 export interface AttributeProps {
@@ -38,33 +38,53 @@ const PizzSol = (props: AttributeProps) => {
 	);
 };
 
-// export const bases = [
-// 	{ name: 'pan', chance: 30, color: 'white' },
-// 	{ name: 'thick crust', chance: 30, color: 'white' },
-// 	{ name: 'medium crust', chance: 31, color: 'white' },
-// 	{ name: 'gluten free', chance: 3, color: 'yellow' },
-// 	{ name: 'cheesy crust', chance: 2, color: 'lime' },
-// 	{ name: 'thin crust', chance: 2, color: 'lime' },
-// 	{ name: 'flatbread', chance: 1, color: 'red' },
-// 	{ name: 'new york', chance: 1, color: 'red' },
-// ];
+let baseRolls: any = {};
+for (const key of bases) {
+	baseRolls[key.name] = key.chance * 0.01;
+}
 
-const randomIndex = (ingObject: any) => {
-	return Math.floor(Math.random() * ingObject.length);
-};
+let meatRolls: any = {};
+for (const key of meats) {
+	meatRolls[key.name] = key.chance * 0.01;
+}
 
-const randomArray = (ingObject: any, amount: Number) => {
+let vegeRolls: any = {};
+for (const key of vegetables) {
+	vegeRolls[key.name] = key.chance * 0.01;
+}
+
+let cheeseRolls: any = {};
+for (const key of cheeses) {
+	cheeseRolls[key.name] = key.chance * 0.01;
+}
+
+let sauceRolls: any = {};
+for (const key of sauces) {
+	sauceRolls[key.name] = key.chance * 0.01;
+}
+
+function weightedRandom(prob: any) {
+	let i,
+		sum = 0,
+		r = Math.random();
+	for (i in prob) {
+		sum += prob[i];
+		if (r <= sum) return i;
+	}
+}
+
+const randomArray = (amount: Number, ingObj: any) => {
 	let randArray: Array<any> = [];
 
 	for (let i = 0; i < amount; i++) {
-		randArray.push(Math.floor(Math.random() * ingObject.length));
+		randArray.push(weightedRandom(ingObj));
 	}
 
 	return randArray.filter((a, b) => randArray.indexOf(a) === b);
 };
 
 function Generator() {
-	const { register, handleSubmit, watch, setValue } = useForm();
+	const { register, watch, setValue } = useForm();
 
 	const [ingredients, setIngredients] = useState<Array<any>>([]);
 
@@ -81,60 +101,27 @@ function Generator() {
 	const watchSauce = watch('sauce', 'classic pizza sauce');
 
 	const randomize = () => {
-		setValue('base', bases[randomIndex(bases)].name);
-		setValue('cheese', cheeses[randomIndex(cheeses)].name);
-		setValue('sauce', sauces[randomIndex(sauces)].name);
+		setValue('base', weightedRandom(baseRolls));
+		setValue('cheese', weightedRandom(cheeseRolls));
+		setValue('sauce', weightedRandom(sauceRolls));
 
-		const randomMeats = randomArray(meats, 4);
-		const randomVegs = randomArray(vegetables, 4);
+		let meatArray = randomArray(4, meatRolls);
 
-		if (meats[randomMeats[0]] && Math.floor(Math.random() * 10) > 2) {
-			setValue('meat1', meats[randomMeats[0]].name);
-		} else {
-			setValue('meat1', 'none');
+		for (let i = 0; i < 4; i++) {
+			setValue(`meat${i + 1}`, 'none');
 		}
+		meatArray.forEach((meat, index) => {
+			setValue(`meat${index + 1}`, meat);
+		});
 
-		if (meats[randomMeats[1]] && Math.floor(Math.random() * 10) > 4) {
-			setValue('meat2', meats[randomMeats[1]].name);
-		} else {
-			setValue('meat2', 'none');
-		}
+		let vegArray = randomArray(4, vegeRolls);
 
-		if (meats[randomMeats[3]] && Math.floor(Math.random() * 10) > 6) {
-			setValue('meat3', meats[randomMeats[2]].name);
-		} else {
-			setValue('meat3', 'none');
+		for (let i = 0; i < 4; i++) {
+			setValue(`veg${i + 1}`, 'none');
 		}
-
-		if (meats[randomMeats[4]] && Math.floor(Math.random() * 10) > 8) {
-			setValue('meat4', meats[randomMeats[3]].name);
-		} else {
-			setValue('meat4', 'none');
-		}
-
-		if (meats[randomVegs[0]] && Math.floor(Math.random() * 10) > 2) {
-			setValue('veg1', vegetables[randomVegs[0]].name);
-		} else {
-			setValue('veg1', 'none');
-		}
-
-		if (meats[randomVegs[1]] && Math.floor(Math.random() * 10) > 4) {
-			setValue('veg2', vegetables[randomVegs[1]].name);
-		} else {
-			setValue('veg2', 'none');
-		}
-
-		if (meats[randomVegs[3]] && Math.floor(Math.random() * 10) > 6) {
-			setValue('veg3', vegetables[randomVegs[2]].name);
-		} else {
-			setValue('veg3', 'none');
-		}
-
-		if (meats[randomVegs[4]] && Math.floor(Math.random() * 10) > 8) {
-			setValue('veg4', vegetables[randomVegs[3]].name);
-		} else {
-			setValue('veg4', 'none');
-		}
+		vegArray.forEach((veg, index) => {
+			setValue(`veg${index + 1}`, veg);
+		});
 	};
 
 	useEffect(() => {
@@ -185,9 +172,9 @@ function Generator() {
 		setIngredients(updatedIngs);
 	}, [watchBase, watchMeat1, watchMeat2, watchMeat3, watchMeat4, watchVeg1, watchVeg2, watchVeg3, watchVeg4, watchCheese, watchSauce]);
 
-	useEffect(() => {
-		randomize();
-	}, []);
+	// useEffect(() => {
+	// 	randomize();
+	// }, [randomize]);
 
 	return (
 		<div className="mx-auto px-4 sm:px-8">
