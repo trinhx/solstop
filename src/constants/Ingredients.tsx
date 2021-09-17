@@ -6,7 +6,7 @@ const white = 'white';
 
 export const bases = [
 	{ name: 'pan', chance: 38, color: white },
-	{ name: 'thick crust', chance: 38, color: white },
+	{ name: 'thin and crispy', chance: 38, color: white },
 	{ name: 'gluten free crust', chance: 10, color: green },
 	{ name: 'stuffed cheesy crust', chance: 5, color: blue },
 	{ name: 'pastry', chance: 5, color: blue },
