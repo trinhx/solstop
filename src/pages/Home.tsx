@@ -46,8 +46,8 @@ function Home() {
 					</h1>
 
 					<span className="text-gray-300 leading-relaxed font-light text-lg mt-3">
-						Delivering PizzSols across the metaverse is hardwork. We're looking for drivers. The owners
-						of the FIRST 500 PizzSols #00001 - #00500 will be airdropped an official PizzSol drivers licence.
+						Delivering PizzSols across the metaverse is hardwork. We're looking for drivers with selected PizzSols.
+						Owners of these will be airdropped an official PizzSol drivers licence.
 					</span>
 
 					<div className="block px-2 sm:p-4 mx-auto mt-8">
