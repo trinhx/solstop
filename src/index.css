@@ -9,11 +9,6 @@
 		src: url('assets/fonts/Lobster-Regular.ttf');
 	}
 	@font-face {
-		font-family: 'DOS';
-		font-weight: 400;
-		src: url('assets/fonts/MorePerfectDOSVGA.ttf');
-	}
-	@font-face {
 		font-family: 'DejaVuSansMono';
 		font-weight: 400;
 		src: url('assets/fonts/DejaVuSansMono.ttf');

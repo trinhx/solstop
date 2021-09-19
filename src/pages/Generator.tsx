@@ -180,7 +180,7 @@ function Generator() {
 	// }, [randomize]);
 
 	return (
-		<div className="mx-auto px-4 sm:px-8">
+		<div className="mx-auto px-4 sm:px-8 mb-36">
 			<div className="flex flex-wrap mx-auto justify-center">
 				<div className="mx-4 mb-6 bg-black img-container">
 					<button className="bg-indigo-800 my-2 py-1 px-4 flex justify-center text-sm mx-auto hover:bg-indigo-600" onClick={randomize}>
