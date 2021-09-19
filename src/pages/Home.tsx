@@ -52,7 +52,7 @@ function Home() {
 					</span>
 				</div>
 
-				<div className="block sm:p-4 mx-auto h-50 w-full bg-pink-700 p-5">
+				<div className="block sm:p-4 mx-auto h-50 w-full bg-gray-700 p-5">
 					<h1 className="text-2xl text-right font-medium mt-5 p-5">
 						... SO WE NEED YOUR HELP
 					</h1>
