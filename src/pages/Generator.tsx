@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { bases, meats, vegetables, cheeses, sauces } from '../constants/Ingredients';
+import ReactGA from 'react-ga';
 
 export interface AttributeProps {
 	ingredient: Array<any>;
 }
 
 const PizzSol = (props: AttributeProps) => {
+	ReactGA.pageview(window.location.pathname);
 	return (
 		<>
 			<div className="mx-4 mb-6 bg-black img-container">
@@ -86,6 +88,7 @@ const randomArray = (amount: Number, ingObj: any) => {
 };
 
 function Generator() {
+	ReactGA.pageview(window.location.pathname);
 	const { register, watch, setValue } = useForm();
 
 	const [ingredients, setIngredients] = useState<Array<any>>([]);

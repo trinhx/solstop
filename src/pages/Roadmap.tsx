@@ -1,6 +1,8 @@
 import { Links } from '../constants/Links';
+import ReactGA from 'react-ga';
 
 function Team() {
+	ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="max-w-3xl mx-auto px-4 sm:px-8 mb-96">
 			<div className="flex flex-wrap mx-auto justify-center">
@@ -14,12 +16,16 @@ function Team() {
 						</ul>
 						<br></br>
 						<p style={{ color: 'lime' }}>October 2021:</p>
-						<p className="mb-2">In search for PizzSol delivery drivers. Airdropping PizzSol drivers licences to
-                        holders with particular ingredients.
-                        <br/><br/>
-					    Join our <a href={Links.DISCORD} target="_blank" rel="noreferrer" className="hover:text-indigo-700">
-                            Discord
-                        </a> for clues!</p>
+						<p className="mb-2">
+							In search for PizzSol delivery drivers. Airdropping PizzSol drivers licences to holders with particular ingredients.
+							<br />
+							<br />
+							Join our{' '}
+							<a href={Links.DISCORD} target="_blank" rel="noreferrer" className="hover:text-indigo-700">
+								Discord
+							</a>{' '}
+							for clues!
+						</p>
 						<br></br>
 						<p style={{ color: 'lime' }}>November 2021:</p>
 						<p>Seek out collaborations and partnerships with the wider NFT ecosystem</p>

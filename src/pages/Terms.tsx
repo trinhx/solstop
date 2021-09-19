@@ -1,4 +1,7 @@
+import ReactGA from 'react-ga';
+
 function Terms() {
+	ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="max-w-3xl mx-auto px-4 sm:px-8">
 			<h1 className="text-2xl mb-4">Terms and Conditions</h1>

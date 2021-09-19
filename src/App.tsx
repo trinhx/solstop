@@ -32,9 +32,8 @@ const connection = new anchor.web3.Connection(rpcHost);
 const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
-ReactGA.initialize('G-SFB3YHXLZM');
-
 const App = () => {
+	ReactGA.initialize('G-SFB3YHXLZM');
 	const endpoint = useMemo(() => clusterApiUrl(network), []);
 	const wallets = useMemo(() => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()], []);
 

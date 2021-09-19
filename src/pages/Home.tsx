@@ -1,10 +1,12 @@
 import pizzsolGifFast from '../assets/pizzsols_fast_2.gif';
 import licences from '../assets/licences.gif';
 import rarePizzSols from '../assets/rare_pizzsols.gif';
+import ReactGA from 'react-ga';
 
 import { Links } from '../constants/Links';
 
 function Home() {
+	ReactGA.pageview(window.location.pathname);
 	return (
 		<div>
 			<div className="max-w-3xl mx-auto px-2 sm:px-4">
@@ -69,7 +71,7 @@ function Home() {
 							<li>- The Vegetarian</li>
 							<li>- The Mexicana</li>
 						</ul>
-						<div className="block sm:hidden px-2 sm:p-4 mx-auto">
+						<div className="block sm:hidden px-2 mt-4 sm:p-4 mx-auto">
 							<img src={rarePizzSols} alt="Ultra-Rare PizzSols!" />
 						</div>
 					</div>

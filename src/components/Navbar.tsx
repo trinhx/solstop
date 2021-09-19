@@ -15,7 +15,7 @@ const Navbar = () => {
 			<SocialBar />
 			<Brandheader />
 
-			<div className="w-full flex items-center justify-center pt-4 pb-8 gap-4 text-gray-500 text-base">
+			<div className="w-full flex-wrap sm:flex mx-4 sm:mx-0 items-center justify-center pt-4 pb-8 gap-4 text-gray-500 text-base">
 				<NavLink to={'/'} exact activeClassName="menu-active">
 					<HomeIcon />
 				</NavLink>

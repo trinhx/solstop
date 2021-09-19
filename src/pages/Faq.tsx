@@ -1,6 +1,8 @@
 import { Links } from '../constants/Links';
+import ReactGA from 'react-ga';
 
 function Faq() {
+	ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="max-w-3xl px-4 mx-auto sm:px-8">
 			<h1 className="text-2xl mb-4">Frequently Asked Questions</h1>
