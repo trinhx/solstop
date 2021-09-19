@@ -31,6 +31,18 @@ function Home() {
 
 				<div className="block sm:p-4 mx-auto h-50 w-full py-20 px-5">
 					<h1 className="text-2xl font-medium text-left mt-5 mb-3">
+						THIS IS MORE THAN JUST TEXT...
+					</h1>
+					<span className="text-gray-300 leading-relaxed font-light text-lg p-5 text-right">
+						This is the beginning of a story. A story we craft together. PizzSols will form the base (no pun intended!),
+						What else can we extrapoloate in to the metaverse from this? The possibiilities are endless. We aim to push
+						the NFT space in a direction where narrators (NFT creators) mesh with artists to create a metaverse that
+						unlocks human creativtity.
+					</span>
+				</div>
+
+				<div className="block sm:p-4 mx-auto h-50 w-full py-20 px-5">
+					<h1 className="text-2xl font-medium text-left mt-5 mb-3">
 						CREATORS TO CREATE PIZZAS THE WAY THEY WANT
 					</h1>
 					<span className="text-gray-300 leading-relaxed font-light text-lg p-5">
@@ -46,8 +58,9 @@ function Home() {
 					</h1>
 
 					<span className="text-gray-300 leading-relaxed font-light text-lg mt-3">
-						Delivering PizzSols across the metaverse is hardwork. We're looking for drivers with selected PizzSols.
-						Owners of these will be airdropped an official PizzSol drivers licence.
+						We're looking for drivers with selected PizzSols and who believe and understand our vision of the NFT space.
+						Owners of PizzSols with specific attributes will be airdropped an official PizzSol drivers licence.
+						Make sure you join our discord for clues.
 					</span>
 
 					<div className="block px-2 sm:p-4 mx-auto mt-8">

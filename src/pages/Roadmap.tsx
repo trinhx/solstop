@@ -1,3 +1,5 @@
+import { Links } from '../constants/Links';
+
 function Team() {
 	return (
 		<div className="max-w-3xl mx-auto px-4 sm:px-8 mb-96">
@@ -13,11 +15,14 @@ function Team() {
 						<br></br>
 						<p style={{ color: 'lime' }}>October 2021:</p>
 						<p className="mb-2">In search for PizzSol delivery drivers. Airdropping PizzSol drivers licences to
-                        holders with particular ingredients. Join our discord for clues.</p>
-						<p>Seek out collaborations and partnerships with the wider NFT ecosystem</p>
+                        holders with particular ingredients.
+                        <br/><br/>
+					    Join our <a href={Links.DISCORD} target="_blank" rel="noreferrer" className="hover:text-indigo-700">
+                            Discord
+                        </a> for clues!</p>
 						<br></br>
 						<p style={{ color: 'lime' }}>November 2021:</p>
-						<p>Voting and ranking system for favourite Pizzsol recipes</p>
+						<p>Seek out collaborations and partnerships with the wider NFT ecosystem</p>
 						<br></br>
 						<p style={{ color: 'lime' }}>December 2021:</p>
 						<p>There will be an ultra rare PizzSol Special Sauce which Community driven and created.</p>
