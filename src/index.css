@@ -79,4 +79,12 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}
+
+	.MuiDialogTitle-root {
+		color: white;
+	}
+
+	.MuiButton-label {
+		color: white;
+	}
 }

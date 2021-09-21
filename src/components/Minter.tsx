@@ -24,6 +24,7 @@ export interface MinterProps {
 }
 
 const Minter = (props: MinterProps) => {
+	const [isDev, setIsDev] = useState(true);
 	const [balance, setBalance] = useState<number>();
 	const [isActive, setIsActive] = useState(false); // true when countdown completes
 	const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
@@ -36,6 +37,7 @@ const Minter = (props: MinterProps) => {
 	});
 
 	const [startDate, setStartDate] = useState(new Date(props.startDate));
+	const [mintPrice, setMintPrice] = useState(0);
 
 	const wallet = useWallet();
 	const [candyMachine, setCandyMachine] = useState<CandyMachine>();
@@ -116,16 +118,17 @@ const Minter = (props: MinterProps) => {
 				signTransaction: wallet.signTransaction,
 			} as anchor.Wallet;
 
-			const { candyMachine, goLiveDate, itemsRemaining } = await getCandyMachineState(anchorWallet, props.candyMachineId, props.connection);
+			const { candyMachine, goLiveDate, itemsRemaining, mintPrice } = await getCandyMachineState(anchorWallet, props.candyMachineId, props.connection);
 
 			setIsSoldOut(itemsRemaining === 0);
 			setStartDate(goLiveDate);
 			setCandyMachine(candyMachine);
+			setMintPrice(mintPrice);
 		})();
 	}, [wallet, props.candyMachineId, props.connection]);
 
 	return (
-		<div className="h-16">
+		<div className={isDev ? 'h-32' : 'h-16'}>
 			{wallet.connected && <AccountBar address={wallet.publicKey?.toBase58() || ''} balance={(balance || 0).toLocaleString()} />}
 			<div className="mx-auto w-full mb-10 text-center">
 				{!wallet.connected ? (
@@ -143,8 +146,18 @@ const Minter = (props: MinterProps) => {
 						)}
 					</>
 				)}
+				{isDev && (
+					<>
+						<p>
+							<span className="px-2">Is active: {`${isActive}`}</span>
+							<span className="px-2">Is minting: {`${isMinting}`}</span>
+							<span className="px-2">Is soldout: {`${isSoldOut}`}</span>
+							<span className="px-2">mint Price: {`${mintPrice / LAMPORTS_PER_SOL}`} sol</span>
+						</p>
+						<span className="px-2">Launch Date: {`${startDate}`}</span>
+					</>
+				)}
 			</div>
-
 			<Snackbar open={alertState.open} autoHideDuration={6000} onClose={() => setAlertState({ ...alertState, open: false })}>
 				<Alert onClose={() => setAlertState({ ...alertState, open: false })} severity={alertState.severity}>
 					{alertState.message}
