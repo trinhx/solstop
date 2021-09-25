@@ -13,7 +13,12 @@ function Faq() {
 			</p>
 
 			<h2 className="text-xl text-indigo-200 mt-2">Where can I buy or sell PizzSol?</h2>
-			<p className="leading-relaxed mb-8 text-gray-300">We are currently awaiting verification confirmation from DigitalEyes, Solanart and Solsea.</p>
+			<p className="leading-relaxed mb-8 text-gray-300">We are listed on
+				<a href={Links.DIGITAL_EYES} target="_blank" rel="noreferrer" className="hover:text-blue-100 text-blue-400">
+					<span>{` `}DigitalEyes.{` `}</span>
+				</a>
+                We are currently awaiting verification confirmation from Solanart and Solsea.
+            </p>
 
 			<h2 className="text-xl text-indigo-200 mt-2">Where can I view my PizzSol?</h2>
 			<p className="leading-relaxed mb-8 text-gray-300">

@@ -4,4 +4,5 @@ export const Links = {
 	MEDIUM: 'https://medium.com/@Pizzsol',
 	PHANTOM_WALLET: 'https://phantom.app/',
 	STEP_FINANCE: 'https://step.finance/',
+    DIGITAL_EYES: 'https://digitaleyes.market/collections/Pizzsol'
 };
