@@ -156,6 +156,7 @@ const Minter = (props: MinterProps) => {
 						</>
 					)}
 				</div>
+				<p className="text-gray-500">0.5 SOL to Mint a Pizzsol</p>
 				{props.isDev && (
 					<>
 						<p>
