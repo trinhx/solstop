@@ -14,6 +14,7 @@ function Team() {
 						<ul>
 							<li>FIRST and ONLY 10,000 Pizzsols Released!</li>
 						</ul>
+
 						<br></br>
 						<p style={{ color: 'lime' }}>October 2021:</p>
 						<p className="mb-2">
@@ -31,6 +32,7 @@ function Team() {
 						<p>Seek out collaborations and partnerships with the wider NFT ecosystem</p>
 						<br></br>
 						<p style={{ color: 'lime' }}>December 2021:</p>
+                        <p>The biggest secret of all.</p>
 						<p>There will be an ultra rare PizzSol Special Sauce which Community driven and created.</p>
 						<br></br>
 						<p style={{ color: 'lime' }}>January 2022:</p>
