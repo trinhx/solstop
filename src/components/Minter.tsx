@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Countdown from 'react-countdown';
 import { Button, CircularProgress, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
@@ -21,10 +20,10 @@ export interface MinterProps {
 	startDate: number;
 	treasury: anchor.web3.PublicKey;
 	txTimeout: number;
+	isDev: boolean;
 }
 
 const Minter = (props: MinterProps) => {
-	const [isDev, setIsDev] = useState(true);
 	const [balance, setBalance] = useState<number>();
 	const [isActive, setIsActive] = useState(false); // true when countdown completes
 	const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
@@ -98,6 +97,11 @@ const Minter = (props: MinterProps) => {
 	};
 
 	useEffect(() => {
+		const difference = +new Date(props.startDate * 1000) - +new Date();
+		setIsActive(difference < 0);
+	}, [props.startDate, wallet]);
+
+	useEffect(() => {
 		(async () => {
 			if (wallet?.publicKey) {
 				const balance = await props.connection.getBalance(wallet.publicKey);
@@ -128,25 +132,31 @@ const Minter = (props: MinterProps) => {
 	}, [wallet, props.candyMachineId, props.connection]);
 
 	return (
-		<div className={isDev ? 'h-32' : 'h-16'}>
+		<div className={props.isDev ? 'h-32' : 'h-24'}>
 			{wallet.connected && <AccountBar address={wallet.publicKey?.toBase58() || ''} balance={(balance || 0).toLocaleString()} />}
 			<div className="mx-auto w-full mb-10 text-center">
-				{!wallet.connected ? (
-					<WalletDialogButton>Connect Wallet</WalletDialogButton>
-				) : (
-					<>
-						{/* isActive isMinting */}
-						{isSoldOut && <span className="px-4 py-2 bg-blue-600 text-gray-100">ALL PIZZSOLS SOLD OUT!</span>}
-						{!isSoldOut && (
-							<Button disabled={isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
-								{isActive && isMinting && <CircularProgress />}
-								{isActive && !isMinting && <span className="text-gray-100">MINT A PIZZSOL!</span>}
-								{!isActive && <Countdown date={startDate} onMount={({ completed }) => completed && setIsActive(true)} onComplete={() => setIsActive(true)} renderer={renderCounter} />}
-							</Button>
-						)}
-					</>
-				)}
-				{isDev && (
+				<div className="block">
+					{!wallet.connected ? (
+						<>
+							<WalletDialogButton>Connect Wallet</WalletDialogButton>
+							{console.log(props.startDate)}
+							<p className="uppercase pt-2">{!isActive && <Counter startDate={props.startDate} />}</p>
+						</>
+					) : (
+						<>
+							{/* isActive isMinting */}
+							{isSoldOut && <span className="px-4 py-2 bg-blue-600 text-gray-100">ALL PIZZSOLS SOLD OUT!</span>}
+							{!isSoldOut && (
+								<Button disabled={isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
+									{isActive && isMinting && <CircularProgress />}
+									{isActive && !isMinting && <span className="text-gray-100">MINT A PIZZSOL!</span>}
+									{!isActive && <Counter startDate={props.startDate} />}
+								</Button>
+							)}
+						</>
+					)}
+				</div>
+				{props.isDev && (
 					<>
 						<p>
 							<span className="px-2">Is active: {`${isActive}`}</span>
@@ -173,10 +183,44 @@ interface AlertState {
 	severity: 'success' | 'info' | 'warning' | 'error' | undefined;
 }
 
-const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
+interface CounterProps {
+	startDate: number;
+}
+
+const calculateTimeLeft = (_date: number) => {
+	const difference = +new Date(_date * 1000) - +new Date();
+	let timeLeft: any = {};
+
+	if (difference > 0) {
+		timeLeft = {
+			days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+			hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+			minutes: Math.floor((difference / 1000 / 60) % 60),
+			seconds: Math.floor((difference / 1000) % 60),
+		};
+	}
+
+	return timeLeft;
+};
+
+const Counter = (props: CounterProps) => {
+	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(props.startDate));
+
+	useEffect(() => {
+		let timer1 = setTimeout(() => setTimeLeft(calculateTimeLeft(props.startDate)), 1000);
+
+		return () => {
+			clearTimeout(timer1);
+		};
+	});
+
+	if (!timeLeft.minutes && !timeLeft.seconds) {
+		return null;
+	}
+
 	return (
-		<span>
-			Launching in {hours} hours, {minutes} minutes, {seconds} seconds
+		<span className="px-4 py-2">
+			Opens in {timeLeft.hours} hours, {timeLeft.minutes} minutes, {timeLeft.seconds} seconds
 		</span>
 	);
 };

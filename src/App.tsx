@@ -2,7 +2,7 @@ import './App.css';
 import { useMemo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 import Home from './pages/Home';
 import Minter from './components/Minter';
@@ -33,7 +33,7 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const App = () => {
-	ReactGA.initialize('G-SFB3YHXLZM');
+	// ReactGA.initialize('G-SFB3YHXLZM');
 	const endpoint = useMemo(() => clusterApiUrl(network), []);
 	const wallets = useMemo(() => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()], []);
 
@@ -57,7 +57,7 @@ const App = () => {
 						<div id="page-container">
 							<div id="content-wrap">
 								<Navbar />
-								{/* <Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} /> */}
+								<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} isDev={false} />
 								<Switch>
 									<Route exact path="/">
 										<Home />
@@ -81,7 +81,7 @@ const App = () => {
 										<Terms />
 									</Route>
 									<Route exact path="/dev">
-										<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} />
+										<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} isDev={true} />
 										<Testminter />
 									</Route>
 								</Switch>

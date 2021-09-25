@@ -1,4 +1,4 @@
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 import opensauce from '../assets/0pensauce.png';
 import tyrone from '../assets/tyrone.png';
@@ -7,7 +7,7 @@ import stickytape from '../assets/stickytape.png';
 import rossco from '../assets/rossco.png';
 
 function Team() {
-	ReactGA.pageview(window.location.pathname);
+	// ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="mx-auto px-4 sm:px-8">
 			<div className="flex flex-wrap mx-auto justify-center">

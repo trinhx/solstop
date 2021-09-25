@@ -1,7 +1,7 @@
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 function Testminter() {
-	ReactGA.pageview(window.location.pathname);
+	// ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="max-w-3xl mx-auto px-4 sm:px-8 mb-96">
 			<div className="flex flex-wrap mx-auto justify-center">

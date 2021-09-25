@@ -1,8 +1,8 @@
 import { Links } from '../constants/Links';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 function Faq() {
-	ReactGA.pageview(window.location.pathname);
+	// ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="max-w-3xl px-4 mx-auto sm:px-8">
 			<h1 className="text-2xl mb-4">Frequently Asked Questions</h1>
@@ -13,12 +13,15 @@ function Faq() {
 			</p>
 
 			<h2 className="text-xl text-indigo-200 mt-2">Where can I buy or sell PizzSol?</h2>
-			<p className="leading-relaxed mb-8 text-gray-300">We are listed on
+			<p className="leading-relaxed mb-8 text-gray-300">
+				We are listed on
 				<a href={Links.DIGITAL_EYES} target="_blank" rel="noreferrer" className="hover:text-blue-100 text-blue-400">
-					<span>{` `}DigitalEyes.{` `}</span>
+					<span>
+						{` `}DigitalEyes.{` `}
+					</span>
 				</a>
-                We are currently awaiting verification confirmation from Solanart and Solsea.
-            </p>
+				We are currently awaiting verification confirmation from Solanart and Solsea.
+			</p>
 
 			<h2 className="text-xl text-indigo-200 mt-2">Where can I view my PizzSol?</h2>
 			<p className="leading-relaxed mb-8 text-gray-300">

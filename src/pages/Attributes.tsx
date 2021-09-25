@@ -1,5 +1,5 @@
 import { bases, meats, vegetables, cheeses, sauces } from '../constants/Ingredients';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 export interface AttributeProps {
 	ingredient: Array<any>;
@@ -7,7 +7,7 @@ export interface AttributeProps {
 }
 
 const Attribute = (props: AttributeProps) => {
-	ReactGA.pageview(window.location.pathname);
+	// ReactGA.pageview(window.location.pathname);
 	return (
 		<>
 			<h1 className="sm:hidden">{props.attrName}</h1>
