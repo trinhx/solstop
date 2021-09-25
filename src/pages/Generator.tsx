@@ -283,7 +283,7 @@ function Generator() {
 								))}
 							</select>
 
-							<h2 className="mt-4">Choose Your Base:</h2>
+							<h2 className="mt-4">Choose Your Sauce:</h2>
 							<select className="bg-gray-700 w-full capitalize" {...register('sauce')}>
 								{sauces.map((ing, index) => (
 									<option key={index} value={ing.name}>
