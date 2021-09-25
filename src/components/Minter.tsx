@@ -221,7 +221,7 @@ const Counter = (props: CounterProps) => {
 
 	return (
 		<span className="px-4 py-2 text-white">
-			Opens in ${timeLeft.days} {`${timeLeft.days === 1 ? 'day' : 'days'}`} {timeLeft.hours} hours, {timeLeft.minutes} minutes, {timeLeft.seconds} seconds
+			Opens in {timeLeft.days} {`${timeLeft.days === 1 ? 'day' : 'days'}`} {timeLeft.hours} hours, {timeLeft.minutes} minutes, {timeLeft.seconds} seconds
 		</span>
 	);
 };
