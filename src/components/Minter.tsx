@@ -132,14 +132,14 @@ const Minter = (props: MinterProps) => {
 	}, [wallet, props.candyMachineId, props.connection]);
 
 	return (
-		<div className={props.isDev ? 'h-32' : 'h-24'}>
+		<div className={props.isDev ? 'h-32' : 'h-32'}>
 			{wallet.connected && <AccountBar address={wallet.publicKey?.toBase58() || ''} balance={(balance || 0).toLocaleString()} />}
 			<div className="mx-auto w-full mb-10 text-center">
 				<div className="block">
 					{!wallet.connected ? (
 						<>
 							<WalletDialogButton>Connect Wallet</WalletDialogButton>
-							{console.log(props.startDate)}
+
 							<p className="uppercase pt-2">{!isActive && <Counter startDate={props.startDate} />}</p>
 						</>
 					) : (
@@ -220,7 +220,7 @@ const Counter = (props: CounterProps) => {
 	}
 
 	return (
-		<span className="px-4 py-2">
+		<span className="px-4 py-2 text-white">
 			Opens in {timeLeft.hours} hours, {timeLeft.minutes} minutes, {timeLeft.seconds} seconds
 		</span>
 	);
