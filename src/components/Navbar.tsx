@@ -22,14 +22,8 @@ const Navbar = () => {
 				<NavLink to={'/attributes'} activeClassName="menu-active">
 					<p className="hover:text-white">ATTRIBUTES</p>
 				</NavLink>
-				<NavLink to={'/roadmap'} activeClassName="menu-active">
-					<p className="hover:text-white">ROADMAP</p>
-				</NavLink>
 				<NavLink to={'/team'} activeClassName="menu-active">
 					<p className="hover:text-white">TEAM</p>
-				</NavLink>
-				<NavLink to={'/generator'} activeClassName="menu-active">
-					<p className="hover:text-white">PIZZSOL GENERATOR</p>
 				</NavLink>
 				<NavLink to={'/faq'} activeClassName="menu-active">
 					<p className="hover:text-white">FAQ</p>
