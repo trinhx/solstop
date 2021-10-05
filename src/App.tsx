@@ -8,11 +8,7 @@ import Home from './pages/Home';
 import Minter from './components/Minter';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Faq from './pages/Faq';
-import Terms from './pages/Terms';
-import Team from './pages/Team';
-import Roadmap from './pages/Roadmap';
-import Generator from './pages/Generator';
+import SolStops from './pages/SolStops';
 
 import * as anchor from '@project-serum/anchor';
 import { clusterApiUrl } from '@solana/web3.js';
@@ -65,20 +61,8 @@ const App = () => {
 									<Route exact path="/attributes">
 										<Attributes />
 									</Route>
-									<Route exact path="/faq">
-										<Faq />
-									</Route>
-									<Route exact path="/roadmap">
-										<Roadmap />
-									</Route>
-									<Route exact path="/team">
-										<Team />
-									</Route>
-									<Route exact path="/generator">
-										<Generator />
-									</Route>
-									<Route exact path="/terms">
-										<Terms />
+									<Route exact path="/solstops">
+										<SolStops />
 									</Route>
 									<Route exact path="/dev">
 										<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} isDev={true} />

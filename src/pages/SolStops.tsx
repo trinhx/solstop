@@ -1,34 +1,34 @@
 // import ReactGA from 'react-ga';
 
-import opensauce from '../assets/0pensauce.png';
-import tyrone from '../assets/tyrone.png';
-import porkroll from '../assets/porkroll.png';
-import stickytape from '../assets/stickytape.png';
-import rossco from '../assets/rossco.png';
+import solstop1 from '../assets/solstop1.jpg';
+import solstop2 from '../assets/solstop2.jpg';
+import solstop3 from '../assets/solstop3.jpg';
+import solstop4 from '../assets/solstop4.jpg';
+import solstop5 from '../assets/solstop5.jpg';
 
-function Team() {
+function SolStops() {
 	// ReactGA.pageview(window.location.pathname);
 	return (
 		<div className="mx-auto px-4 sm:px-8">
 			<div className="flex flex-wrap mx-auto justify-center">
 				<div className="mx-4 mb-6 bg-black img-container">
-					<img src={tyrone} alt="Tyrone" />
+					<img src={solstop1} alt="SolStop 1" />
 				</div>
 				<div className="mx-4 mb-6 bg-black img-container">
-					<img src={opensauce} alt="0pensauce" />
+					<img src={solstop2} alt="SolStop 2" />
 				</div>
 				<div className="mx-4 mb-6 bg-black img-container">
-					<img src={porkroll} alt="porkroll" />
+					<img src={solstop3} alt="SolStop 3" />
 				</div>
 				<div className="mx-4 mb-6 bg-black img-container">
-					<img src={stickytape} alt="stickytape" />
+					<img src={solstop4} alt="SolStop 4" />
 				</div>
 				<div className="mx-4 mb-6 bg-black img-container">
-					<img src={rossco} alt="rossco" />
+					<img src={solstop5} alt="SolStop 5" />
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default Team;
+export default SolStops;

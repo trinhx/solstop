@@ -149,14 +149,14 @@ const Minter = (props: MinterProps) => {
 							{!isSoldOut && (
 								<Button disabled={isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
 									{isActive && isMinting && <CircularProgress />}
-									{isActive && !isMinting && <span className="text-gray-100">MINT A PIZZSOL!</span>}
+									{isActive && !isMinting && <span className="text-gray-100">MINT A SOLSTOP!</span>}
 									{!isActive && <Counter startDate={props.startDate} />}
 								</Button>
 							)}
 						</>
 					)}
 				</div>
-				<p className="text-gray-500">0.5 SOL to Mint a Pizzsol</p>
+				<p className="text-gray-900">0.1 SOL to Mint a SolStop</p>
 				{props.isDev && (
 					<>
 						<p>

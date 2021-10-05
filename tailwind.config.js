@@ -15,8 +15,8 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				lobster: ['Lobster', ...defaultTheme.fontFamily.sans],
-				dejavu: ['DejaVuSansMono', ...defaultTheme.fontFamily.mono],
-				dejavuBold: ['DejaVuSansMonoBold', ...defaultTheme.fontFamily.mono],
+				kavoon: ['Kavoon', ...defaultTheme.fontFamily.sans],
+				prompt: ['Prompt', ...defaultTheme.fontFamily.sans],
 				// trochut: ['Trochut', ...defaultTheme.fontFamily.serif],
 			},
 		},

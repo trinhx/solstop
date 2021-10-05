@@ -12,28 +12,28 @@ const HomeIcon = () => (
 const Navbar = () => {
 	return (
 		<>
-			<SocialBar />
-			<Brandheader />
 
-			<div className="w-full flex-wrap sm:flex mx-4 sm:mx-0 items-center justify-center pt-4 pb-8 gap-4 text-gray-500 text-base">
-				<NavLink to={'/'} exact activeClassName="menu-active">
-					<HomeIcon />
-				</NavLink>
-				<NavLink to={'/attributes'} activeClassName="menu-active">
-					<p className="hover:text-white">ATTRIBUTES</p>
-				</NavLink>
-				<NavLink to={'/team'} activeClassName="menu-active">
-					<p className="hover:text-white">TEAM</p>
-				</NavLink>
-				<NavLink to={'/faq'} activeClassName="menu-active">
-					<p className="hover:text-white">FAQ</p>
-				</NavLink>
-				{/* <NavLink to={'/'} activeClassName="menu-active">
-					<p className="hover:text-white">THE SPECIAL SAUCE</p>
-				</NavLink> */}
-			</div>
-		</>
-	);
+			<div className="w-full flex-wrap sm:flex mx-4 sm:mx-0 items-center justify-left pt-4 pb-8 gap-4 text-gray-900 text-base text-lg">
+                <div className="flex-row w-11/12 mx-auto">
+                    <div className="flex w-1/4">
+                        <Brandheader />
+                    </div>
+
+                    <div className="flex w-1/4">
+                        <NavLink to={'/'} activeClassName="menu-active">
+                            <p className="hover:text-white">HOME</p>
+                        </NavLink>
+                    </div>
+
+                    <div className="flex w-1/4">
+                        <NavLink to={'/solstops'} activeClassName="menu-active">
+                            <p className="hover:text-white">STOPS</p>
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Navbar;

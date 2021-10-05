@@ -18,6 +18,16 @@
 		font-weight: 700;
 		src: url('assets/fonts/DejaVuSansMono-Bold.ttf');
 	}
+	@font-face {
+		font-family: 'Kavoon';
+		font-weight: 400;
+		src: url('assets/fonts/Kavoon-Regular.ttf');
+	}
+	@font-face {
+		font-family: 'Prompt';
+		font-weight: 600;
+		src: url('assets/fonts/Prompt-Bold.ttf');
+	}
 	body {
 		margin: 0;
 		background-color: #151515;
@@ -39,7 +49,7 @@
 	}
 
 	#content-wrap {
-		background-color: #1a1a1a;
+		background-color: #ffd166;
 		padding-bottom: 10rem; /* Footer height */
 	}
 
@@ -48,6 +58,7 @@
 		bottom: 0;
 		width: 100%;
 		height: 2.5rem; /* Footer height */
+        background-color: #073b4c;
 	}
 	.menu-active {
 		color: #5ca1e3;
