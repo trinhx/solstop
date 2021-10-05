@@ -10,27 +10,27 @@ const HomeIcon = () => (
 );
 
 const Navbar = () => {
-	return (
-		<>
-
-			<div className="w-full flex-wrap sm:flex mx-4 sm:mx-0 items-center justify-left pt-4 pb-8 gap-4 text-gray-900 text-base text-lg">
-                <div className="flex-row w-11/12 mx-auto">
-                    <div className="flex w-1/4">
-                        <Brandheader />
-                    </div>
-
-                    <div className="flex w-1/4">
-                        <NavLink to={'/'} activeClassName="menu-active">
-                            <p className="hover:text-white">HOME</p>
-                        </NavLink>
-                    </div>
-
-                    <div className="flex w-1/4">
-                        <NavLink to={'/solstops'} activeClassName="menu-active">
-                            <p className="hover:text-white">STOPS</p>
-                        </NavLink>
-                    </div>
+    return (
+        <>
+            <div className="flow-row w-11/12 p-9 sm:flex mx-auto sm:mx-0 items-center pt-20 pb-8 text-midnight-green text-base">
+                <div className="flex w-2/3 text-left justify-right p-4">
+                    <Brandheader />
                 </div>
+
+                <div className="flex w-1/3">
+                    <NavLink to={'/'} className="p-4" activeClassName="menu-active">
+                        <p className="hover:text-white">HOME</p>
+                    </NavLink>
+
+                    <NavLink to={'/solstops'} className="p-4" activeClassName="menu-active">
+                        <p className="hover:text-white">STOPS</p>
+                    </NavLink>
+
+                    <NavLink to={'/solstops'} className="p-4" activeClassName="menu-active">
+                        <p className="hover:text-white">ATTRIBUTES</p>
+                    </NavLink>
+                </div>
+
             </div>
         </>
     );

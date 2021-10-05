@@ -19,6 +19,9 @@ module.exports = {
 				prompt: ['Prompt', ...defaultTheme.fontFamily.sans],
 				// trochut: ['Trochut', ...defaultTheme.fontFamily.serif],
 			},
+            colors: {
+                'midnight-green': '#073b4c',
+            }
 		},
 	},
 	variants: {
