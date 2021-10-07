@@ -17,7 +17,7 @@ const Navbar = () => {
                     <Brandheader />
                 </div>
 
-                <div className="flex w-1/3">
+                <div className="flex w-1/3 font-bold">
                     <NavLink to={'/'} className="p-4" activeClassName="menu-active">
                         <p className="hover:text-white">HOME</p>
                     </NavLink>

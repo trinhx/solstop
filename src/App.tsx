@@ -9,6 +9,7 @@ import Minter from './components/Minter';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SolStops from './pages/SolStops';
+import SolStop1 from './pages/SolStop1';
 
 import * as anchor from '@project-serum/anchor';
 import { clusterApiUrl } from '@solana/web3.js';
@@ -63,6 +64,9 @@ const App = () => {
 									</Route>
 									<Route exact path="/solstops">
 										<SolStops />
+									</Route>
+									<Route exact path="/solstop1">
+										<SolStop1 />
 									</Route>
 									<Route exact path="/dev">
 										<Minter candyMachineId={candyMachineId} config={config} connection={connection} startDate={startDateSeed} treasury={treasury} txTimeout={txTimeout} isDev={true} />

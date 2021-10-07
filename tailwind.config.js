@@ -21,6 +21,10 @@ module.exports = {
 			},
             colors: {
                 'midnight-green': '#073b4c',
+                'caribbean-green': '#06d6a0',
+                'blue-ncs': '#118ab2',
+                'paradise-pink': '#ef476f',
+                'grange-yellow': '#ffd166',
             }
 		},
 	},
