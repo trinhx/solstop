@@ -29,7 +29,7 @@ function Home() {
                 <div className="block sm:p-4 mx-auto p-5">
                     <h1 className="text-4xl font-prompt text-left mt-5 mb-3">Where can I buy?</h1>
                     <span className="leading-relaxed font-light text-xl p-5">
-                        Mint directly on https://solstops.io/ . SolStops is also currently working with DigitalEyes, Solanart, Solsea and Magic Eden for listing and verification of the collection.
+                        Mint directly on https://solstops.io/ SolStops is currently working with secondary marketplaces for listing and verification of the collection.
                     </span>
                 </div>
             </div>
