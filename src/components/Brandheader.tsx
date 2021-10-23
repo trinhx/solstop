@@ -15,7 +15,6 @@ const Brandheader = () => {
 			<div className="top-0 hidden sm:block mx-auto w-80">
 				<Link to="/">
                     <h1 className="flex text-6xl text-midnight-green font-kavoon">SolStops
-                    <img className="flex" src={solStopLogo} height="25%" width="25%"/>
                     </h1>
 				</Link>
 			</div>

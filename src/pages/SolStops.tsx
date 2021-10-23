@@ -11,26 +11,8 @@ function SolStops() {
 	return (
 		<div className="mx-auto px-4 sm:px-8">
 			<div className="flex flex-wrap mx-auto justify-center">
-                <div className="mx-4 mb-6 bg-white img-container">
-                    <NavLink to={'/solstop1'}>
-                        <img className="p-4" src={solstop1} alt="SolStop 1" />
-                    </NavLink>
-                </div>
-
-                <div className="mx-4 mb-6 bg-white img-container">
-                    <img className="p-4" src={solstop2} alt="SolStop 2" />
-                </div>
-
-                <div className="mx-4 mb-6 bg-white img-container">
-                    <img className="p-4" src={solstop3} alt="SolStop 3" />
-                </div>
-
-                <div className="mx-4 mb-6 bg-white img-container">
-                    <img className="p-4" src={solstop4} alt="SolStop 4" />
-                </div>
-
-                <div className="mx-4 mb-6 bg-white img-container">
-                    <img className="p-4" src={solstop5} alt="SolStop 5" />
+                <div className="h-96">
+                    <h1 className="text-3xl text-midnight-green">Coming Soon</h1>
                 </div>
             </div>
         </div>

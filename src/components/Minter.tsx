@@ -145,7 +145,7 @@ const Minter = (props: MinterProps) => {
 					) : (
 						<>
 							{/* isActive isMinting */}
-							{isSoldOut && <span className="px-4 py-2 bg-blue-600 text-gray-100">ALL PIZZSOLS SOLD OUT!</span>}
+							{isSoldOut && <span className="px-4 py-2 bg-blue-600 text-gray-100">ALL SOLSTOPS SOLD OUT!</span>}
 							{!isSoldOut && (
 								<Button disabled={isMinting || !isActive} variant="contained" color="primary" onClick={onMint}>
 									{isActive && isMinting && <CircularProgress />}
@@ -156,7 +156,6 @@ const Minter = (props: MinterProps) => {
 						</>
 					)}
 				</div>
-				<p className="text-gray-900">0.1 SOL to Mint a SolStop</p>
 				{props.isDev && (
 					<>
 						<p>

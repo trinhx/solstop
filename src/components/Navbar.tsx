@@ -26,7 +26,7 @@ const Navbar = () => {
                         <p className="hover:text-white">STOPS</p>
                     </NavLink>
 
-                    <NavLink to={'/solstops'} className="p-4" activeClassName="menu-active">
+                    <NavLink to={'/attributes'} className="p-4" activeClassName="menu-active">
                         <p className="hover:text-white">ATTRIBUTES</p>
                     </NavLink>
                 </div>
