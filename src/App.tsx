@@ -50,6 +50,7 @@ const App = () => {
 
 							<meta name="msapplication-TileColor" content="#da532c" />
 							<meta name="theme-color" content="#ffffff" />
+                            <title>SolStops</title>
 						</Helmet>
 						<div id="page-container">
 							<div id="content-wrap">
