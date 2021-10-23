@@ -36,15 +36,6 @@ function Home() {
 
             <div className="text-midnight-green max-w-6xl mx-auto px-2 sm:px-4">
                 <div className="block sm:p-4 mx-auto p-5">
-                    <h1 className="text-4xl font-prompt text-left mt-5 mb-3">What is the roadmap ahead?</h1>
-                    <span className="leading-relaxed font-light text-xl p-5">
-                        The initial roadmap is to launch on xx/xx/xx. After this, we will hand it over to the SolStops community to help MAP out the future together. Simple. No roadmap promises. There's nothing worse than that feeling of being let down, like waiting for a BUS that never arrives?!
-                    </span>
-                </div>
-            </div>
-
-            <div className="text-midnight-green max-w-6xl mx-auto px-2 sm:px-4">
-                <div className="block sm:p-4 mx-auto p-5">
                     <h1 className="text-4xl font-prompt text-left mt-10">FAQ</h1>
                     <span className="leading-relaxed font-light text-xl">
                         <h1 className="text-xl font-bold py-3">When is mint date?</h1>
