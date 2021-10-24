@@ -6,7 +6,6 @@ const Brandheader = () => {
 	return (
 		<>
 			<div className="top-0 sm:hidden mx-auto w-72">
-                <img src={solStopLogo} />
 				<Link to="/">
                     <h1 className="text-6xl text-midnight-green font-kavoon">SolStops</h1>
 				</Link>
